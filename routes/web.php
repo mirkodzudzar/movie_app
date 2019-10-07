@@ -15,12 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function(){
-  Route::resource('users', 'AdminUsersController', ['names' => [
-    'index' => 'admin.users.index',
-    ]]);
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Prefix 'admin' adds a admin in fron of every route in this group
+Route::group(['prefix' => 'admin'], function(){
+  Route::resource('', 'AdminController', ['names' => [
+      'index' => 'admin.index',
+    ]]);
+
+  Route::resource('users', 'AdminUsersController', ['names' => [
+      'index' => 'admin.users.index',
+      'create' => 'admin.users.create',
+      'store' => 'admin.users.store',
+      'show' => 'admin.users.show',
+      'edit' => 'admin.users.edit',
+
+    ]]);
+});
