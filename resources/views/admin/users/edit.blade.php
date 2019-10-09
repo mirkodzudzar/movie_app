@@ -24,6 +24,10 @@
       {{ Form::email('email', null, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
+      {{ Form::label('photo_id', 'Photo:') }}
+      {{ Form::file('photo_id', null) }}
+    </div>
+    <div class="form-group">
       {{ Form::label('password', 'Password') }}
       {{ Form::password('password', ['class' => 'form-control']) }}
     </div>

@@ -24,3 +24,15 @@ $factory->define(App\User::class, function (Faker $faker) {
       'remember_token' => Str::random(10),
     ];
 });
+
+$factory->define(App\Role::class, function(Faker $faker){
+  return [
+    'name' => $faker->randomElement(['administrator', 'subscriber'])
+  ];
+});
+
+$factory->define(App\Photo::class, function(Faker $faker){
+  return [
+    'path' => 'no_image'
+  ];
+});

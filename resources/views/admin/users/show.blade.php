@@ -8,6 +8,9 @@
   <div class="table-responsive">
     <table class="table table-bordered table-hover text-center">
       <tr>
+        <th colspan="2" class="text-center"><img height="100" src="{{ asset('images/'.$photo) }}"></th>
+      </tr>
+      <tr>
         <th>Id</th>
         <td>{{$user->id}}</td>
       </tr>
@@ -37,8 +40,14 @@
       </tr>
       <tr>
         <!-- change to dinamic -->
-        <th>Change role(admin)</th>
-        <td><a href="" class="btn btn-primary">Admin</a><a href="" class="btn btn-primary">Subscriber</a></td>
+        <th>Change role({{$user->role['name']}})</th>
+        <td>
+          @if($user->role['name'] == 'administrator')
+          <a href="" class="btn btn-primary">Subscriber</a>
+          @else
+          <a href="" class="btn btn-primary">Admin</a>
+          @endif
+        </td>
       </tr>
       <tr>
         <!-- delete styles later -->
