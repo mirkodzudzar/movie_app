@@ -15,7 +15,6 @@
         <th>Username</th>
         <th>Email</th>
         <th>Role</th>
-        <th colspan="2">Change role</th>
         <th>Created at</th>
         <th>Updated at</th>
         <th colspan="2">Edit/Delete actions</th>
@@ -32,19 +31,6 @@
             <td>{{$user->username}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->role['name']}}</td>
-
-            @if($user->role['name'] == 'administrator')
-              <td></td>
-              <td class="text-center">
-                <a href="" class="btn btn-primary">Subscriber</a>
-              </td>
-            @else
-              <td class="text-center">
-                <a href="" class="btn btn-primary">Admin</a>
-              </td>
-              <td></td>
-            @endif
-
             <td class="text-center">{{$user->created_at}}</td>
             <td class="text-center">{{$user->updated_at}}</td>
             <td class="text-center"><a href="{{ route('admin.users.edit', $user->id )}}" class="btn btn-success">Edit</a></td>

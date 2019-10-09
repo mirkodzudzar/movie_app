@@ -40,14 +40,8 @@
       </tr>
       <tr>
         <!-- change to dinamic -->
-        <th>Change role({{$user->role['name']}})</th>
-        <td>
-          @if($user->role['name'] == 'administrator')
-          <a href="" class="btn btn-primary">Subscriber</a>
-          @else
-          <a href="" class="btn btn-primary">Admin</a>
-          @endif
-        </td>
+        <th>Role</th>
+        <td>{{$user->role['name']}}</td>
       </tr>
       <tr>
         <!-- delete styles later -->
