@@ -7,8 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
     protected $fillable = [
-      'path'
+      'file'
     ];
+
+    // protected $uploads = 'images';
+    //
+    // public function getFileAttribute($photo)
+    // {
+    //   return $this->uploads . $photo;
+    // }
 
     // protected $uploads = '/images/';
     //
@@ -19,8 +26,13 @@ class Photo extends Model
     //
     // }
 
-    public function imageable()
+    // public function imageable()
+    // {
+    //   return $this->morphTo();
+    // }
+
+    public function user()
     {
-      return $this->morphTo();
+      return $this->hasOne('App\User');
     }
 }

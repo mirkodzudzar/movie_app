@@ -23,9 +23,7 @@
         @forelse($users as $user)
           <tr>
             <td class="text-center">{{$user->id}}</td>
-              @foreach($user->photos as $photo)
-                <td class="text-center"><img height="50" src="{{ asset('images/'.$photo->path) }}"></td>
-              @endforeach
+            <td><img height="50" src="http://placehold.it/700x200" alt=""></td>
             <td>{{$user->first_name}}</td>
             <td><a href="{{ route('admin.users.show', $user->id) }}">{{$user->last_name}}</a></td>
             <td>{{$user->username}}</td>

@@ -8,7 +8,7 @@
   <div class="table-responsive">
     <table class="table table-bordered table-hover text-center">
       <tr>
-        <th colspan="2" class="text-center"><img height="100" src="{{ asset('images/'.$photo) }}"></th>
+        <th colspan="2" class="text-center"><img height="50" src="http://placehold.it/700x200" alt=""></th>
       </tr>
       <tr>
         <th>Id</th>

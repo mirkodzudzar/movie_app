@@ -25,10 +25,17 @@ Route::group(['prefix' => 'admin'], function(){
       'store' => 'admin.users.store',
       'show' => 'admin.users.show',
       'edit' => 'admin.users.edit',
-      'administrator' => 'admin.users.administrator',
-      'subscriber' => 'admin.users.subscriber',
+      // 'administrator' => 'admin.users.administrator',
+      // 'subscriber' => 'admin.users.subscriber',
     ]]);
+
+  Route::resource('movies', 'AdminMoviesController', ['names' => [
+    'index' => 'admin.movies.index',
+    'create' => 'admin.movies.create',
+    'store' => 'admin.movies.store',
+    'show' => 'admin.movies.show',
+    'edit' => 'admin.movies.edit',
+    ]]);
+
   Route::get('/', ['as' => 'admin.index' , 'uses' => 'AdminController@index']);
-  // Route::get('/user/{$id}/administrator', ['as' => 'admin.user.administrator' , 'uses' => 'AdminController@administrator']);
-  // Route::get('/user/{$id}/subscriber', ['as' => 'admin.user.subscriber' , 'uses' => 'AdminController@subscriber']);
 });

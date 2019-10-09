@@ -36,6 +36,29 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
+              Movies
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.movies.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>See all movies</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.movies.create') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add new movie</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
               Users
               <i class="right fas fa-angle-left"></i>
             </p>

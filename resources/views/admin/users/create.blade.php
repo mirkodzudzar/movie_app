@@ -27,10 +27,10 @@
       {!! Form::label('role_id', 'Role') !!}
       {!! Form::select('role_id', $roles, null, ['class' => 'form-control']) !!}
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       {{ Form::label('photo_id', 'Photo:') }}
       {{ Form::file('photo_id', null) }}
-    </div>
+    </div> -->
     <div class="form-group">
       {{ Form::label('password', 'Password') }}
       {{ Form::password('password', ['class' => 'form-control', 'id' => 'password', 'autocomplete' => 'new-password']) }}
