@@ -26,13 +26,13 @@ class DatabaseSeeder extends Seeder
         // {
         //   $user->photos()->save(factory(App\Photo::class)->make());
         // });
-        factory(App\Movie::class, 5)->create();
+        factory(App\Movie::class, 10)->create();
         factory(App\Genre::class, 3)->create();
 
         $genres = App\Genre::all();
         App\Movie::all()->each(function ($movie) use ($genres) {
             $movie->genres()->attach(
-                $genres->random(rand(1, 3))->pluck('id')->toArray()
+                $genres->random(rand(1, 2))->pluck('id')->toArray()
             );
         });
 

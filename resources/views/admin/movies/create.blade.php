@@ -31,9 +31,12 @@
       {{ Form::label('photo_id', 'Photo:') }}
       {{ Form::file('photo_id', null) }}
     </div> -->
-    <div class="form-group">
-      {{ Form::label('genre_id', 'Genre') }}
-      {{ Form::select('genre_id', $genres, null, ['class' => 'form-control'])}}
+    <div class="form-check">
+      {!! Form::label('genre', 'Genres') !!}<br>
+      @foreach($genres as $genre)
+        {{ Form::checkbox('genre[]', $genre->id, false, ['class' => 'form-check-inpit'])}}
+        {{ Form::label('$genre->id', $genre->name, ['class' => 'form-check-label'])}}<br>
+      @endforeach
     </div>
     <div class="form-group">
       {{ Form::submit('Create movie', ['class' => 'btn btn-primary']) }}

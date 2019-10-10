@@ -45,9 +45,8 @@ $factory->define(App\Movie::class, function(Faker $faker){
     'name' => $faker->name,
     'description' => $faker->text,
     'time_duration' => $faker->time($format = 'H:i:s', $max = 'now'),
-    'release_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+    'release_date' => $faker->date($format = 'Y-m-d'),
     'director_id' => $faker->numberBetween(1, 5),
-    'genre_id' => $faker->numberBetween(1, 5),
   ];
 });
 

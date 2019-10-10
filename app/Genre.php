@@ -10,8 +10,11 @@ class Genre extends Model
       'name',
     ];
 
-    public function movies()
+    public function genres()
     {
-      return $this->belongsToMany('App\Movies');
+      return $this->belongsToMany('App\Movies')
+      ->withPivot('genre_id', 'genre_id')
+      ->withPivot('movie_id', 'movie_id')
+    	->withTimestamps();
     }
 }

@@ -24,11 +24,14 @@ class UserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-          'first_name' => ['required', 'string', 'max:255'],
-          'last_name' => ['required', 'string', 'max:255'],
-          'username' => ['required', 'string', 'max:255', 'unique:users'],
-          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-          'password' => ['required', 'string', 'min:8', 'confirmed'],
+          'first_name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          'last_name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          'date_of_birth' => 'required|date_format:Y-m-d|before:today|nullable',
+          'state_of_birth' => 'required|string|max:255',
+          'username' => 'required|string|max:255|unique:users',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:8|confirmed',
+          'role_id' => 'required|integer'
         ];
     }
 }

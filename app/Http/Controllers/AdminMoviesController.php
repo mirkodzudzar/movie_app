@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Movie;
 use App\Director;
 use App\Genre;
+use App\Http\Requests\MovieCreateRequest;
+use App\Http\Requests\MovieEditRequest;
 
 class AdminMoviesController extends Controller
 {
@@ -32,7 +34,7 @@ class AdminMoviesController extends Controller
         $directors = Director::all()->pluck('full_name', 'id');
         //In this case, this method does not working because there is not a 'full_name' fild in movies table
         // $directors = Director::pluck('full_name', 'id')->all();
-        $genres = Genre::pluck('name', 'id')->all();
+        $genres = Genre::all();
 
         return view('admin.movies.create', compact('directors', 'genres'));
     }
@@ -43,9 +45,14 @@ class AdminMoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MovieCreateRequest $request)
     {
-        echo "MOVIE STORE METHOD";
+      $input = $request->all();
+      $movie = Movie::create($input);
+      //Attaching genres to the created movie, inserting values in genre_movie table
+      $movie->genres()->attach($request->genre);
+
+      return redirect('admin/movies');
     }
 
     /**
@@ -70,8 +77,8 @@ class AdminMoviesController extends Controller
     public function edit($id)
     {
         $movie = Movie::findOrFail($id);
+        $genres = Genre::all();
         $directors = Director::all()->pluck('full_name', 'id');
-        $genres = Genre::pluck('name', 'id')->all();
 
         return view('admin.movies.edit', compact('movie', 'directors', 'genres'));
     }
@@ -83,9 +90,21 @@ class AdminMoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MovieEditRequest $request, $id)
     {
-        echo "UPDATe MOVIE ".$id;
+      $movie = Movie::findOrFail($id);
+      $input = $request->all();
+
+      if($request->genre)
+      {
+        $movie->genres()->detach();
+        //Attaching genres to the created movie, inserting values in genre_movie table
+        $movie->genres()->attach($request->genre);
+      }
+
+      $movie->update($input);
+
+      return redirect('admin/movies');
     }
 
     /**
@@ -97,6 +116,8 @@ class AdminMoviesController extends Controller
     public function destroy($id)
     {
         $movie = Movie::findOrFail($id);
+        //Detaching all movie genres from genre_movie table
+        $movie->genres()->detach();
         $movie->delete();
 
         return redirect('admin/movies');

@@ -18,9 +18,8 @@ class CreateMoviesTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->time('time_duration')->format('g:i a');
-            $table->date('release_date')->format('Y-m-d');;
+            $table->date('release_date')->format('Y-m-d');
             $table->integer('director_id');
-            $table->integer('genre_id');
             $table->timestamps();
         });
     }
