@@ -32,7 +32,7 @@
           @include('admin.includes.admin_errors')
 
           @yield('content')
-    
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

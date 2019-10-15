@@ -9,6 +9,7 @@
   <table class="table table-bordered table-hover">
     <thead class="text-center">
       <th>Id</th>
+      <th>Image</th>
       <th>Name</th>
       <th>Time duration</th>
       <th>Release date</th>
@@ -22,6 +23,7 @@
       @forelse($movies as $movie)
         <tr>
           <td class="text-center">{{$movie->id}}</td>
+          <td><img height="50" src="http://placehold.it/700x200" alt=""></td>
           <td class="text-center"><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
           <td class="text-center">{{$movie->time_duration}}</td>
           <td class="text-center">{{$movie->release_date}}</td>

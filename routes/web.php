@@ -37,5 +37,17 @@ Route::group(['prefix' => 'admin'], function(){
     'edit' => 'admin.movies.edit',
     ]]);
 
-  Route::get('/', ['as' => 'admin.index' , 'uses' => 'AdminController@index']);
+    Route::get('/', ['as' => 'admin.index' , 'uses' => 'AdminController@index']);
+
+    Route::get('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@index']);
+    Route::post('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@store']);
+    Route::get('roles/{role}', ['as' => 'admin.roles.edit' , 'uses' => 'AdminRolesController@edit']);
+    Route::patch('roles/{role}', 'AdminRolesController@update');
+    Route::delete('roles/{role}', 'AdminRolesController@destroy');
+
+    Route::get('genres', ['as' => 'admin.genres.index' , 'uses' => 'AdminGenresController@index']);
+    Route::post('genres', ['as' => 'admin.genres.index' , 'uses' => 'AdminGenresController@store']);
+    Route::get('genres/{genre}', ['as' => 'admin.genres.edit' , 'uses' => 'AdminGenresController@edit']);
+    Route::patch('genres/{genre}', 'AdminGenresController@update');
+    Route::delete('genres/{genre}', 'AdminGenresController@destroy');
 });

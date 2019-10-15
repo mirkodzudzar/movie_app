@@ -10,4 +10,46 @@
   <div class="alert alert-success">
     <p>{{session('deleted_user')}}</p>
   </div>
+
+
+@elseif(Session::has('created_movie'))
+  <div class="alert alert-success">
+    <p>{{session('created_movie')}}</p>
+  </div>
+@elseif(Session::has('updated_movie'))
+  <div class="alert alert-success">
+    <p>{{session('updated_movie')}}</p>
+  </div>
+@elseif(Session::has('deleted_movie'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_movie')}}</p>
+  </div>
+
+
+@elseif(Session::has('created_role'))
+  <div class="alert alert-success">
+    <p>{{session('created_role')}}</p>
+  </div>
+@elseif(Session::has('updated_role'))
+  <div class="alert alert-success">
+    <p>{{session('updated_role')}}</p>
+  </div>
+@elseif(Session::has('deleted_role'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_role')}}</p>
+  </div>
+
+
+@elseif(Session::has('created_genre'))
+  <div class="alert alert-success">
+    <p>{{session('created_genre')}}</p>
+  </div>
+@elseif(Session::has('updated_genre'))
+  <div class="alert alert-success">
+    <p>{{session('updated_genre')}}</p>
+  </div>
+@elseif(Session::has('deleted_genre'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_genre')}}</p>
+  </div>
 @endif

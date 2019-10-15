@@ -8,6 +8,7 @@ use App\Director;
 use App\Genre;
 use App\Http\Requests\MovieCreateRequest;
 use App\Http\Requests\MovieEditRequest;
+use Illuminate\Support\Facades\Session;
 
 class AdminMoviesController extends Controller
 {
@@ -51,6 +52,7 @@ class AdminMoviesController extends Controller
       $movie = Movie::create($input);
       //Attaching genres to the created movie, inserting values in genre_movie table
       $movie->genres()->attach($request->genre);
+      Session::flash('created_movie', 'The movie '.$request->name.' has been created.');
 
       return redirect('admin/movies');
     }
@@ -103,6 +105,7 @@ class AdminMoviesController extends Controller
       }
 
       $movie->update($input);
+      Session::flash('updated_movie', 'The movie '.$request->name.' has been updated.');
 
       return redirect('admin/movies');
     }
@@ -119,6 +122,7 @@ class AdminMoviesController extends Controller
         //Detaching all movie genres from genre_movie table
         $movie->genres()->detach();
         $movie->delete();
+        Session::flash('deleted_movie', 'The movie '.$movie->name.' has been deleted.');
 
         return redirect('admin/movies');
     }

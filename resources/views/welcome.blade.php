@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Front page of CMS
                 </div>
             </div>
         </div>
