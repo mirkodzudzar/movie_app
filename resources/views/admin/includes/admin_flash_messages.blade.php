@@ -52,4 +52,20 @@
   <div class="alert alert-success">
     <p>{{session('deleted_genre')}}</p>
   </div>
+
+
+@elseif(Session::has('created_profession'))
+  <div class="alert alert-success">
+    <p>{{session('created_profession')}}</p>
+  </div>
+@elseif(Session::has('updated_profession'))
+  <div class="alert alert-success">
+    <p>{{session('updated_profession')}}</p>
+  </div>
+@elseif(Session::has('deleted_profession'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_profession')}}</p>
+  </div>
+
+
 @endif

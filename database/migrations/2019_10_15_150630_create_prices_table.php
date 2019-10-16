@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class GenreMovie extends Migration
+class CreatePricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class GenreMovie extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('prices', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('value');
+            $table->integer('movie_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class GenreMovie extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('prices');
     }
 }

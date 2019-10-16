@@ -28,7 +28,7 @@
       </tr>
       <tr>
         <th>Director</th>
-        <td>{{$movie->director->first_name." ".$movie->director->last_name}}</td>
+        <td></td>
       </tr>
       <tr>
         <th>Genre</th>

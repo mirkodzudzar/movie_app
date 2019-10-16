@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('heading', 'Movies')
+@section('heading', 'Price of movies')
 
-@section('description', 'Movies')
+@section('description', 'Price of movies')
 
 @section('content')
 <div class="table-responsive">
@@ -15,12 +15,8 @@
       <th>Release date</th>
       <th>Director(s)</th>
       <th>Actors(s)</th>
-      <th>Producer(s)</th>
-      <th>Writer(s)</th>
       <th>Genre</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th colspan="2">Edit/Delete actions</th>
+      <th>Price</th>
     </thead>
     <tbody>
       @forelse($movies as $movie)
@@ -32,8 +28,6 @@
           <td class="text-center">{{$movie->release_date}}</td>
           <td class="text-center">{{$movie->professions($movie->id, 'director')}}</td>
           <td class="text-center">{{$movie->professions($movie->id, 'actor')}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'producer')}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'writer')}}</td>
           <td class="text-center">
             <?php
               $counter = 1;
@@ -48,16 +42,17 @@
               <?php $counter = $counter + 1; ?>
             @endforeach
           </td>
-          <td class="text-center">{{$movie->created_at}}</td>
-          <td class="text-center">{{$movie->updated_at}}</td>
-          <td class="text-center"><a href="{{ route('admin.movies.edit', $movie->id)}}" class="btn btn-success">Edit</a></td>
-          <td class="text-center">
-            {{ Form::open(['method' => 'DELETE', 'action' => ['AdminMoviesController@destroy', $movie->id]]) }}
-              <div class="form-group">
-                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-              </div>
-            {{ Form::close() }}
-          </td>
+          <td
+          <?php
+            if($movie->price)
+            {
+              echo "class='text-center bg-success'>".$movie->price['value']." $</td>";
+            }
+            else
+            {
+              echo "class='text-center bg-danger'>unaveilable</td>";
+            }
+          ?>
         </tr>
       @empty
         <tr>

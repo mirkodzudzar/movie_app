@@ -53,6 +53,47 @@
                 <p>Add new movie</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.genres.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Genres</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.prices.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Prices</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Celebrities
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.celebrities.index' )}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>See all celebrities</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.celebrities.create') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add new celebrity</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.professions.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Professions</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item has-treeview">
@@ -76,24 +117,22 @@
                 <p>Add new user</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Roles</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.genres.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Genres
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.roles.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Roles
-            </p>
-          </a>
-        </li>
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                News by authors
+              </p>
+            </a>
+          </li>
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}"

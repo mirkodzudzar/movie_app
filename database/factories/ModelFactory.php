@@ -30,7 +30,7 @@ $factory->define(App\User::class, function(Faker $faker) {
 
 $factory->define(App\Role::class, function(Faker $faker){
   return [
-    'name' => $faker->randomElement(['administrator', 'subscriber'])
+    'name' => $faker->randomElement(['administrator', 'subscriber', 'author'])
   ];
 });
 
@@ -46,7 +46,7 @@ $factory->define(App\Movie::class, function(Faker $faker){
     'description' => $faker->text,
     'time_duration' => $faker->time($format = 'H:i:s', $max = 'now'),
     'release_date' => $faker->date($format = 'Y-m-d'),
-    'director_id' => $faker->numberBetween(1, 5),
+    // 'director_id' => $faker->numberBetween(1, 5),
   ];
 });
 
@@ -56,11 +56,24 @@ $factory->define(App\Genre::class, function(Faker $faker){
   ];
 });
 
-$factory->define(App\Director::class, function(Faker $faker){
+$factory->define(App\Celebrity::class, function(Faker $faker){
   return [
     'first_name' => $faker->firstName,
     'last_name' => $faker->lastName,
     'date_of_birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
     'state_of_birth' => $faker->state,
+  ];
+});
+
+$factory->define(App\Price::class, function(Faker $faker){
+  return [
+    'value' => $faker->numberBetween(9, 999),
+    'movie_id' => $faker->numberBetween(1, 10),
+  ];
+});
+
+$factory->define(App\Profession::class, function(Faker $faker){
+  return [
+    'name' => $faker->randomElement(['actor', 'director', 'writer', 'producer'])
   ];
 });

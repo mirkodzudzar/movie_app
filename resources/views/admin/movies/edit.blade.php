@@ -23,10 +23,8 @@
       {{ Form::label('release_date', 'Release date') }}
       {{ Form::date('release_date', null, ['class' => 'form-control']) }}
     </div>
-    <div class="form-group">
-      {!! Form::label('director_id', 'Director') !!}
-      {!! Form::select('director_id', $directors, null, ['class' => 'form-control']) !!}
-    </div>
+    <!-- Edit this code -->
+    DIRECTOR NAME
     <!-- <div class="form-group">
       {{ Form::label('photo_id', 'Photo:') }}
       {{ Form::file('photo_id', null) }}

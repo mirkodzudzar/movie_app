@@ -18,16 +18,23 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->truncate();
         DB::table('movies')->truncate();
         DB::table('genres')->truncate();
-        DB::table('directors')->truncate();
-        DB::table('photos')->truncate();
+        DB::table('celebrities')->truncate();
+        // DB::table('photos')->truncate();
+        DB::table('prices')->truncate();
+        // DB::table('images')->truncate();
+        DB::table('professions')->truncate();
 
-        factory(App\Role::class, 2)->create();
+
         factory(App\User::class, 10)->create();
+        factory(App\Role::class, 3)->create();
         // {
         //   $user->photos()->save(factory(App\Photo::class)->make());
         // });
         factory(App\Movie::class, 10)->create();
         factory(App\Genre::class, 3)->create();
+        factory(App\Celebrity::class, 10)->create();
+        factory(App\Price::class, 10)->create();
+        factory(App\Profession::class, 4)->create();
 
         $genres = App\Genre::all();
         App\Movie::all()->each(function ($movie) use ($genres) {
@@ -36,6 +43,25 @@ class DatabaseSeeder extends Seeder
             );
         });
 
-        factory(App\Director::class, 5)->create();
+        $movies = App\Movie::all();
+        App\User::all()->each(function ($user) use ($movies) {
+            $user->movies()->attach(
+                $movies->random(rand(1, 2))->pluck('id')->toArray()
+            );
+        });
+
+        $professions = App\Profession::all();
+        App\Celebrity::all()->each(function ($celebrity) use ($professions) {
+            $celebrity->professions()->attach(
+                $professions->random(rand(1, 2))->pluck('id')->toArray()
+            );
+        });
+
+        $celebrities = App\Celebrity::all();
+        App\Movie::all()->each(function ($movie) use ($celebrities) {
+            $movie->celebrities()->attach(
+                $celebrities->random(rand(1,2))->pluck('id')->toArray()
+              );
+        });
     }
 }

@@ -37,6 +37,14 @@ Route::group(['prefix' => 'admin'], function(){
     'edit' => 'admin.movies.edit',
     ]]);
 
+  Route::resource('celebrities', 'AdminCelebritiesController', ['names' => [
+    'index' => 'admin.celebrities.index',
+    'create' => 'admin.celebrities.create',
+    'store' => 'admin.celebrities.store',
+    'show' => 'admin.celebrities.show',
+    'edit' => 'admin.celebrities.edit',
+    ]]);
+
     Route::get('/', ['as' => 'admin.index' , 'uses' => 'AdminController@index']);
 
     Route::get('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@index']);
@@ -50,4 +58,13 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('genres/{genre}', ['as' => 'admin.genres.edit' , 'uses' => 'AdminGenresController@edit']);
     Route::patch('genres/{genre}', 'AdminGenresController@update');
     Route::delete('genres/{genre}', 'AdminGenresController@destroy');
+
+    Route::get('professions', ['as' => 'admin.professions.index' , 'uses' => 'AdminProfessionsController@index']);
+    Route::post('professions', ['as' => 'admin.professions.index' , 'uses' => 'AdminProfessionsController@store']);
+    Route::get('professions/{profession}', ['as' => 'admin.professions.edit' , 'uses' => 'AdminProfessionsController@edit']);
+    Route::patch('professions/{profession}', 'AdminProfessionsController@update');
+    Route::delete('professions/{profession}', 'AdminProfessionsController@destroy');
+
+    Route::get('prices', ['as' => 'admin.prices.index' , 'uses' => 'AdminPricesController@index']);
+
 });
