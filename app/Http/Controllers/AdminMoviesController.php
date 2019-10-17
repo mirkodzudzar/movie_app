@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Movie;
 use App\Celebrity;
 use App\Genre;
+use App\Profession;
 use App\Http\Requests\MovieCreateRequest;
 use App\Http\Requests\MovieEditRequest;
 use Illuminate\Support\Facades\Session;
@@ -36,8 +37,10 @@ class AdminMoviesController extends Controller
         //In this case, this method does not working because there is not a 'full_name' fild in movies table
         // $directors = Director::pluck('full_name', 'id')->all();
         $genres = Genre::all();
+        $professions = Profession::all();
+        $celebrities = Celebrity::all();
 
-        return view('admin.movies.create', compact('genres'));
+        return view('admin.movies.create', compact('genres', 'professions', 'celebrities'));
     }
 
     /**
@@ -48,7 +51,7 @@ class AdminMoviesController extends Controller
      */
     public function store(MovieCreateRequest $request)
     {
-      $input = $request->all();
+      return $input = $request->all();
       $movie = Movie::create($input);
       //Attaching genres to the created movie, inserting values in genre_movie table
       $movie->genres()->attach($request->genre);
@@ -80,9 +83,11 @@ class AdminMoviesController extends Controller
     {
         $movie = Movie::findOrFail($id);
         $genres = Genre::all();
+        $professions = Profession::all();
+        $celebrities = Celebrity::all();
         // $celebrities = Celebrity::all()->pluck('full_name', 'id');
 
-        return view('admin.movies.edit', compact('movie', 'genres'));
+        return view('admin.movies.edit', compact('movie', 'genres', 'professions', 'celebrities'));
     }
 
     /**

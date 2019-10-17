@@ -23,19 +23,61 @@
       {{ Form::label('release_date', 'Release date') }}
       {{ Form::date('release_date', null, ['class' => 'form-control']) }}
     </div>
-    <!-- Edit this code -->
-    DIRECTOR NAME
+    <div class="table-responsive">
+      {{ Form::label('genres', 'Genres') }}
+      <table class="table table-bordered table-hover">
+        <thead class="text-center">
+            <th class="bg-success" colspan="{{count($genres)}}">Genres</th>
+        </thead>
+        <tbody>
+          <tr>
+            @foreach($genres as $genre)
+            <td>
+              {{ Form::checkbox('genre[]', $genre->id, false, ['class' => 'form-check-inpit'])}}
+              {{ Form::label('$genre->id', $genre->name, ['class' => 'form-check-label'])}}
+            @endforeach
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-responsive">
+      {{ Form::label('profession', 'Professions') }}
+      <table class="table table-bordered table-hover">
+        <thead class="text-center">
+          @foreach($professions as $profession)
+            <th class="bg-success">{{$profession->name}}</th>
+          @endforeach
+        </thead>
+        <tbody>
+          @foreach($celebrities as $celebrity)
+            <tr>
+              <!-- getFullNameAttribute -->
+              <td>
+                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
+                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
+              </td>
+              <td>
+                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
+                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
+              </td>
+              <td>
+                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
+                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
+              </td>
+              <td>
+                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
+                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
     <!-- <div class="form-group">
       {{ Form::label('photo_id', 'Photo:') }}
       {{ Form::file('photo_id', null) }}
     </div> -->
-    <div class="form-check">
-      {!! Form::label('genre', 'Genres') !!}<br>
-      @foreach($genres as $genre)
-        {{ Form::checkbox('genre[]', $genre->id, false, ['class' => 'form-check-inpit'])}}
-        {{ Form::label('$genre->id', $genre->name, ['class' => 'form-check-label'])}}<br>
-      @endforeach
-    </div>
     <div class="form-group">
       {{ Form::submit('Create movie', ['class' => 'btn btn-primary']) }}
     </div>

@@ -20,20 +20,8 @@
           <tr>
             <td class="text-center">{{$celebrity->id}}</td>
             <td class="text-center"><img height="50" src="http://placehold.it/700x200" alt=""></td>
-            <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->first_name." ".$celebrity->last_name}}</a></td>
-            <td class="text-center">
-              <?php
-                $numItems = count($celebrity->professions()->get());
-                $i = 0;
-              ?>
-              @foreach($celebrity->professions as $profession)
-                @if(++$i === $numItems)
-                  {{$profession->name}}
-                @else
-                  {{$profession->name.", "}}
-                @endif
-              @endforeach
-            </td>
+            <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
+            <td class="text-center">{{$celebrity->professions($celebrity->id)}}</td>
             <td class="text-center">{{date('Y-m-d', strtotime($celebrity->created_at))}}</td>
             <td class="text-center">{{date('Y-m-d', strtotime($celebrity->updated_at))}}</td>
             <td class="text-center"><a href="{{ route('admin.celebrities.edit', $celebrity->id )}}" class="btn btn-success">Edit</a></td>
