@@ -42,7 +42,7 @@ $factory->define(App\Photo::class, function(Faker $faker){
 });
 $factory->define(App\Movie::class, function(Faker $faker){
   return [
-    'name' => $faker->name,
+    'name' => 'movie_name_'.$faker->numberBetween(9, 999),
     'description' => $faker->text,
     'time_duration' => $faker->time($format = 'H:i:s', $max = 'now'),
     'release_date' => $faker->date($format = 'Y-m-d'),

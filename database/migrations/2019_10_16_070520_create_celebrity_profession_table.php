@@ -13,12 +13,12 @@ class CreateCelebrityProfessionTable extends Migration
      */
     public function up()
     {
-        Schema::create('celebrity_profession', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('celebrity_id')->unsigned()->nullable()->index();
-            $table->integer('profession_id')->unsigned()->nullable()->index();
-            $table->timestamps();
-        });
+        // Schema::create('celebrity_profession', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->integer('celebrity_id')->unsigned()->nullable()->index();
+        //     $table->integer('profession_id')->unsigned()->nullable()->index();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateCelebrityProfessionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('celebrity_profession');
+        // Schema::dropIfExists('celebrity_profession');
     }
 }

@@ -20,19 +20,15 @@ class Celebrity extends Model
   //   return $this->morphMany('App\Photo', 'imageable');
   // }
 
-  public function professions()
-  {
-    return $this->belongsToMany('App\Profession')
-    ->withPivot('celebrity_id', 'celebrity_id')
-    ->withPivot('profession_id', 'profession_id')
-    ->withTimestamps();
-  }
+  // public function professions()
+  // {
+  //   return $this->belongsToMany('App\Profession')
+  //   ->withTimestamps();
+  // }
 
   public function movies()
   {
     return $this->belongsToMany('App\Movie')
-    ->withPivot('celebrity_id', 'celebrity_id')
-    ->withPivot('profession_id', 'profession_id')
     ->withTimestamps();
   }
 

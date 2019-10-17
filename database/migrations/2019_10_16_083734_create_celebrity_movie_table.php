@@ -17,6 +17,7 @@ class CreateCelebrityMovieTable extends Migration
             $table->bigIncrements('id');
             $table->integer('celebrity_id')->unsigned()->nullable()->index();
             $table->integer('movie_id')->unsigned()->nullable()->index();
+            $table->integer('profession_id');
             $table->timestamps();
         });
     }

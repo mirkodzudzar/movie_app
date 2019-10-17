@@ -27,23 +27,34 @@
         <td>{{$movie->release_date}}</td>
       </tr>
       <tr>
-        <th>Director</th>
-        <td></td>
+        <th>Director(s)</th>
+        <td>{{$movie->professions($movie->id, 'director')}}</td>
+      </tr>
+      <tr>
+        <th>Actors(s)</th>
+        <td>{{$movie->professions($movie->id, 'actor')}}</td>
+      </tr>
+      <tr>
+        <th>Producer(s)</th>
+        <td>{{$movie->professions($movie->id, 'producer')}}</td>
+      </tr>
+      <tr>
+        <th>Writer(s)</th>
+        <td>{{$movie->professions($movie->id, 'writer')}}</td>
       </tr>
       <tr>
         <th>Genre</th>
         <td>
           <?php
-            $counter = 1;
-            $genre_count = count($movie->genres()->get());
+            $numItems = count($movie->genres()->get());
+            $i = 0;
           ?>
           @foreach($movie->genres as $genre)
-            @if($genre_count == $counter)
+            @if(++$i === $numItems)
               {{$genre->name}}
             @else
               {{$genre->name.", "}}
             @endif
-            <?php $counter = $counter + 1; ?>
           @endforeach
         </td>
       </tr>
@@ -56,7 +67,7 @@
         <td>{{$movie->updated_at}}</td>
       </tr>
       <tr>
-        <!-- delete styles later -->
+        <!-- delete styles -->
         <th rowspan="2" style="vertical-align : middle; text-align:center;">Edit/Delete actions</th>
         <td>
           <a href="{{ route('admin.movies.edit', $movie->id )}}" class="btn btn-success">Edit</a>

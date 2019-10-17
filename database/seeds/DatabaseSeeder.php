@@ -50,17 +50,18 @@ class DatabaseSeeder extends Seeder
             );
         });
 
-        $professions = App\Profession::all();
-        App\Celebrity::all()->each(function ($celebrity) use ($professions) {
-            $celebrity->professions()->attach(
-                $professions->random(rand(1, 2))->pluck('id')->toArray()
-            );
-        });
+        // $professions = App\Profession::all();
+        // App\Celebrity::all()->each(function ($celebrity) use ($professions) {
+        //     $celebrity->professions()->attach(
+        //         $professions->random(rand(1, 2))->pluck('id')->toArray()
+        //     );
+        // });
 
+        //Movie has many celebrities with some professions
         $celebrities = App\Celebrity::all();
         App\Movie::all()->each(function ($movie) use ($celebrities) {
             $movie->celebrities()->attach(
-                $celebrities->random(rand(1,2))->pluck('id')->toArray()
+                $celebrities->random(rand(1,2))->pluck('id')->toArray(), ['profession_id' => rand(1, 4)]
               );
         });
     }

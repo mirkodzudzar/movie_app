@@ -11,8 +11,7 @@
       <th>Id</th>
       <th>Name</th>
       <th>Number of users</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th colspan="2">Created at/Updated at</th>
       <th colspan="2">Edit/Delete actions</th>
     </thead>
     <tbody>
@@ -21,8 +20,8 @@
           <td class="text-center">{{$role->id}}</td>
           <td class="text-center">{{$role->name}}</td>
           <td class="text-center">{{$role->userByRoleCount($role->id)}}</td>
-          <td class="text-center">{{$role->created_at}}</td>
-          <td class="text-center">{{$role->updated_at}}</td>
+          <td class="text-center">{{date('Y-m-d', strtotime($role->created_at))}}</td>
+          <td class="text-center">{{date('Y-m-d', strtotime($role->updated_at))}}</td>
           <td class="text-center"><a href="{{ route('admin.roles.edit', $role->id)}}" class="btn btn-success">Edit</a></td>
           <td class="text-center">
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminRolesController@destroy', $role->id]]) }}

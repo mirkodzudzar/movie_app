@@ -55,8 +55,6 @@ class User extends Authenticatable
     public function movies()
     {
       return $this->belongsToMany('App\Movie')
-      ->withPivot('movie_id)', 'movie_id')
-      ->withPivot('user_id', 'user_id')
       ->withPivot('like', 'like')
       ->withTimestamps();
     }

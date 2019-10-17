@@ -11,8 +11,7 @@
       <th>Id</th>
       <th>Name</th>
       <th>Number of celebrities</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th colspan="2">Created at/Updated at</th>
       <th colspan="2">Edit/Delete actions</th>
     </thead>
     <tbody>
@@ -20,9 +19,9 @@
         <tr>
           <td class="text-center">{{$profession->id}}</td>
           <td class="text-center">{{$profession->name}}</td>
-          <td class="text-center">{{$profession->actorByProfessionCount($profession->id)}}</td>
-          <td class="text-center">{{$profession->created_at}}</td>
-          <td class="text-center">{{$profession->updated_at}}</td>
+          <td class="text-center">{{$profession->numberOfCelebrities($profession->id)}}</td>
+          <td class="text-center">{{date('Y-m-d', strtotime($profession->created_at))}}</td>
+          <td class="text-center">{{date('Y-m-d', strtotime($profession->updated_at))}}</td>
           <td class="text-center"><a href="{{ route('admin.professions.edit', $profession->id)}}" class="btn btn-success">Edit</a></td>
           <td class="text-center">
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminProfessionsController@destroy', $profession->id]]) }}

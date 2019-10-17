@@ -14,8 +14,6 @@ class Genre extends Model
     public function movies()
     {
       return $this->belongsToMany('App\Movie')
-      ->withPivot('genre_id', 'genre_id')
-      ->withPivot('movie_id', 'movie_id')
     	->withTimestamps();
     }
 
