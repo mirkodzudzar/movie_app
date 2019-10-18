@@ -85,6 +85,7 @@ class AdminMoviesController extends Controller
         $genres = Genre::all();
         $professions = Profession::all();
         $celebrities = Celebrity::all();
+
         // $celebrities = Celebrity::all()->pluck('full_name', 'id');
 
         return view('admin.movies.edit', compact('movie', 'genres', 'professions', 'celebrities'));
@@ -102,7 +103,12 @@ class AdminMoviesController extends Controller
       $movie = Movie::findOrFail($id);
       $input = $request->all();
 
-      if($request->genre)
+      if($request->genre == null)
+      {
+        $movie->genres()->detach();
+      }
+
+      else
       {
         $movie->genres()->detach();
         //Attaching genres to the created movie, inserting values in genre_movie table

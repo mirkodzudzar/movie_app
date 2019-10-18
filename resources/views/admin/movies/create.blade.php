@@ -46,7 +46,10 @@
       <table class="table table-bordered table-hover">
         <thead class="text-center">
           @foreach($professions as $profession)
-            <th class="bg-success">{{$profession->name}}</th>
+            <th class="bg-success">
+              {{ Form::checkbox('profession[]', $profession->id, false, ['class' => 'form-check-inpit'])}}
+              {{ Form::label('$profession->id', $profession->name, ['class' => 'form-check-label'])}}
+            </th>
           @endforeach
         </thead>
         <tbody>

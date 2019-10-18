@@ -27,21 +27,6 @@
       {{ Form::label('photo_id', 'Photo:') }}
       {{ Form::file('photo_id', null) }}
     </div> -->
-    <!-- NEED TO WORL ON CHECKBOXES, THER MUST BE A BETTER WAY TO DO THIS -->
-    <div class="form-group">
-      {!! Form::label('genre', 'Curent genre(s)') !!}<br>
-      <?php
-        $numItems = count($movie->genres()->get());
-        $i = 0;
-      ?>
-      @foreach($movie->genres as $genre)
-        @if(++$i === $numItems)
-          <b>{{ $genre->name }}</b>
-        @else
-          <b>{{ $genre->name.", " }}</b>
-        @endif
-      @endforeach
-    </div>
     <div class="table-responsive">
       {{ Form::label('genres', 'Change genre(s)') }}
       <table class="table table-bordered table-hover">
@@ -52,7 +37,7 @@
           <tr>
             @foreach($genres as $genre)
               <td>
-                {{ Form::checkbox('genre[]', $genre->id, false, ['class' => 'form-check-inpit'])}}
+                {{ Form::checkbox('genre[]', $genre->id, $genre->checking($movie->id, $genre->id), ['class' => 'form-check-inpit'])}}
                 {{ Form::label('$genre->id', $genre->name, ['class' => 'form-check-label'])}}
               @endforeach
               </td>
