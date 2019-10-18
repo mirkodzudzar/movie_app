@@ -13,6 +13,8 @@
         <th>Name (First/Last)</th>
         <th>Username</th>
         <th>Email</th>
+        <th>Date of birth</th>
+        <th>State of birth</th>
         <th>Role</th>
         <th colspan="2">Created at/Updated at</th>
         <th colspan="2">Edit/Delete actions</th>
@@ -22,9 +24,11 @@
           <tr>
             <td class="text-center">{{$user->id}}</td>
             <td><img height="50" src="http://placehold.it/700x200" alt=""></td>
-            <td><a href="{{ route('admin.users.show', $user->id) }}">{{$user->first_name.' '.$user->last_name}}</a></td>
+            <td><a href="{{ route('admin.users.show', $user->id) }}">{{$user->full_name}}</a></td>
             <td>{{$user->username}}</td>
             <td>{{$user->email}}</td>
+            <td>{{$user->date_of_birth}}</td>
+            <td>{{$user->state_of_birth}}</td>
             <td>{{$user->role['name']}}</td>
             <td class="text-center">{{date('Y-m-d', strtotime($user->created_at))}}</td>
             <td class="text-center">{{date('Y-m-d', strtotime($user->updated_at))}}</td>

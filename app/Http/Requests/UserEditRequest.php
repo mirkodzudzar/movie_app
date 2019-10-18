@@ -24,14 +24,14 @@ class UserEditRequest extends FormRequest
     public function rules()
     {
         return [
-          'first_name' => 'string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
-          'last_name' => 'string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
-          'date_of_birth' => 'date_format:Y-m-d|before:today|nullable',
+          'first_name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          'last_name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          'date_of_birth' => 'required|date_format:Y-m-d|before:today|nullable',
           'state_of_birth' => 'string|max:255',
-          'username' => 'string|max:255',//unique:users
-          'email' => 'string|email|max:255',//unique:users
+          'username' => 'required|string|max:255',//unique:users
+          'email' => 'required|string|email|max:255',//unique:users
           'password' => 'confirmed',
-          'role_id' => 'integer'
+          'role_id' => 'required|integer'
         ];
     }
 }

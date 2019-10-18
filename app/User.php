@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getFullNameAttribute($value)
+    {
+       return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
     public function role()
     {
         return $this->belongsTo('App\Role');

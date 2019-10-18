@@ -78,4 +78,18 @@
   </div>
 
 
+@elseif(Session::has('created_celebrity'))
+  <div class="alert alert-success">
+    <p>{{session('created_celebrity')}}</p>
+  </div>
+@elseif(Session::has('updated_celebrity'))
+  <div class="alert alert-success">
+    <p>{{session('updated_celebrity')}}</p>
+  </div>
+@elseif(Session::has('deleted_celebrity'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_celebrity')}}</p>
+  </div>
+
+
 @endif

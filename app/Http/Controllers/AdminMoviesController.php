@@ -20,6 +20,7 @@ class AdminMoviesController extends Controller
      */
     public function index()
     {
+        //We need to sort movies by number of votes(likes or dislikes)
         $movies = Movie::all();
 
         return view('admin.movies.index', compact('movies'));
@@ -38,7 +39,7 @@ class AdminMoviesController extends Controller
         // $directors = Director::pluck('full_name', 'id')->all();
         $genres = Genre::all();
         $professions = Profession::all();
-        $celebrities = Celebrity::all();
+        $celebrities = Celebrity::all();//paginate(5)
 
         return view('admin.movies.create', compact('genres', 'professions', 'celebrities'));
     }
@@ -51,7 +52,7 @@ class AdminMoviesController extends Controller
      */
     public function store(MovieCreateRequest $request)
     {
-      return $input = $request->all();
+      $input = $request->all();
       $movie = Movie::create($input);
       //Attaching genres to the created movie, inserting values in genre_movie table
       $movie->genres()->attach($request->genre);
@@ -103,6 +104,7 @@ class AdminMoviesController extends Controller
       $movie = Movie::findOrFail($id);
       $input = $request->all();
 
+      //We can uncheck all checkboxes and leave everything empty
       if($request->genre == null)
       {
         $movie->genres()->detach();

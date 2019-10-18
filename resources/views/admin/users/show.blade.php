@@ -31,6 +31,14 @@
         <td>{{$user->email}}</td>
       </tr>
       <tr>
+        <th>Date of birth</th>
+        <td>{{$user->date_of_birth}}</td>
+      </tr>
+      <tr>
+        <th>State of birth</th>
+        <td>{{$user->state_of_birth}}</td>
+      </tr>
+      <tr>
         <th>Created at</th>
         <td>{{$user->created_at}}</td>
       </tr>

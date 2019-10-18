@@ -61,7 +61,7 @@ class AdminUsersController extends Controller
         $input['password'] = bcrypt($request->password);
         User::create($input);
 
-        Session::flash('created_user', 'The user '.$request->first_name.' '.$request->last_name.' has been created.');
+        Session::flash('created_user', 'A user '.$request->first_name.' '.$request->last_name.' has been created.');
 
         return redirect('/admin/users');
     }
@@ -115,7 +115,7 @@ class AdminUsersController extends Controller
         }
 
         $user->update($input);
-        Session::flash('updated_user', 'The user '.$request->first_name.' '.$request->last_name.' has been updated.');
+        Session::flash('updated_user', 'A user '.$request->first_name.' '.$request->last_name.' has been updated.');
 
         return redirect('/admin/users');
     }
@@ -130,7 +130,7 @@ class AdminUsersController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        Session::flash('deleted_user', 'The user '.$user->first_name.' '.$user->last_name.' has been deleted.');
+        Session::flash('deleted_user', 'A user '.$user->first_name.' '.$user->last_name.' has been deleted.');
 
         return redirect('/admin/users');
     }

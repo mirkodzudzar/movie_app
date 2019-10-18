@@ -24,8 +24,8 @@
       @forelse($movies as $movie)
         <tr>
           <td class="text-center">{{$movie->id}}</td>
-          <td class="text-center"></td>
-          <td class="text-center"></td>
+          <td class="text-center">{{$movie->likes($movie->id)}}</td>
+          <td class="text-center">{{$movie->dislikes($movie->id)}}</td>
           <td><img height="50" src="http://placehold.it/700x200" alt=""></td>
           <td class="text-center"><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
           <td class="text-center">{{$movie->time_duration}}</td>

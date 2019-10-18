@@ -12,7 +12,7 @@ class AdminProfessionsController extends Controller
 {
   public function index()
   {
-    $professions = Profession::all();
+    $professions = Profession::all()->sortBy('name');
 
     return view('admin.professions.index', compact('professions'));
   }

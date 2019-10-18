@@ -41,42 +41,6 @@
         </tbody>
       </table>
     </div>
-    <div class="table-responsive">
-      {{ Form::label('profession', 'Professions') }}
-      <table class="table table-bordered table-hover">
-        <thead class="text-center">
-          @foreach($professions as $profession)
-            <th class="bg-success">
-              {{ Form::checkbox('profession[]', $profession->id, false, ['class' => 'form-check-inpit'])}}
-              {{ Form::label('$profession->id', $profession->name, ['class' => 'form-check-label'])}}
-            </th>
-          @endforeach
-        </thead>
-        <tbody>
-          @foreach($celebrities as $celebrity)
-            <tr>
-              <!-- getFullNameAttribute -->
-              <td>
-                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
-                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
-              </td>
-              <td>
-                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
-                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
-              </td>
-              <td>
-                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
-                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
-              </td>
-              <td>
-                {{ Form::checkbox('celebrity[]', $celebrity->id, false, ['class' => 'form-check-inpit'])}}
-                {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
-              </td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
     <!-- <div class="form-group">
       {{ Form::label('photo_id', 'Photo:') }}
       {{ Form::file('photo_id', null) }}

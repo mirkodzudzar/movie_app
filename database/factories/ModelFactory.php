@@ -67,7 +67,7 @@ $factory->define(App\Celebrity::class, function(Faker $faker){
 
 $factory->define(App\Price::class, function(Faker $faker){
   return [
-    'value' => $faker->numberBetween(9, 999),
+    'value' => $faker->numberBetween(100, 300),
     'movie_id' => $faker->numberBetween(1, 10),
   ];
 });

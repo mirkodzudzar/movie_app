@@ -12,7 +12,7 @@ class AdminGenresController extends Controller
 {
     public function index()
     {
-      $genres = Genre::all();
+      $genres = Genre::all()->sortBy('name');
 
       return view('admin.genres.index', compact('genres'));
 

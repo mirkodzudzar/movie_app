@@ -8,7 +8,7 @@ use DB;
 class Celebrity extends Model
 {
   protected $fillable = [
-    'first_name', 'last_name', 'date_of_birth', 'place_of_birth',
+    'first_name', 'last_name', 'date_of_birth', 'state_of_birth',
   ];
 
   // public function photos()

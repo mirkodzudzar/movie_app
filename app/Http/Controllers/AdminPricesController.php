@@ -14,7 +14,7 @@ class AdminPricesController extends Controller
 {
     public function index()
     {
-      $movies = Movie::all();
+      $movies = Movie::all()->sortBy('movie.price.value');
 
       return view('admin.prices.index', compact('movies'));
     }

@@ -16,6 +16,14 @@
       {{ Form::text('last_name', null, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
+      {{ Form::label('date_of_birth', 'Date of birth') }}
+      {{ Form::date('date_of_birth', null, ['class' => 'form-control']) }}
+    </div>
+    <div class="form-group">
+      {{ Form::label('state_of_birth', 'State of birth') }}
+      {{ Form::text('state_of_birth', null, ['class' => 'form-control']) }}
+    </div>
+    <div class="form-group">
       {{ Form::label('username', 'Username') }}
       {{ Form::text('username', null, ['class' => 'form-control']) }}
     </div>

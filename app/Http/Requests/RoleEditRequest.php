@@ -24,7 +24,7 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+            'name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
         ];
     }
 }

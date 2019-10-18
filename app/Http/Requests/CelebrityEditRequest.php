@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MovieEditRequest extends FormRequest
+class CelebrityEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class MovieEditRequest extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
-          'description' => '',
-          'time_duration' => '',
-          'release_date' => 'date',
+          'first_name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          'last_name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          'date_of_birth' => 'required|date_format:Y-m-d|before:today|nullable',
+          'state_of_birth' => 'required|string|max:255'
         ];
     }
 }

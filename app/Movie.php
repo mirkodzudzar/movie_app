@@ -63,6 +63,19 @@ class Movie extends Model
           }
         }
     }
+
+    public function likes($id)
+    {
+      $movie_users = DB::table('movie_user')->where('movie_id', $id)->where('like', 1)->get();
+      return $movie_users->count();
+    }
+
+    public function dislikes($id)
+    {
+      $movie_users = DB::table('movie_user')->where('movie_id', $id)->where('like', 0)->get();
+      return $movie_users->count();
+    }
+
     //FIX THAT COMMA AT THE END OF EVERY FULL NAME, MAKE THIS FUNCTION SIMPLER, OR MAYBE EVEN CHANGE WHOLE FUNCTIONALITY
     //This is a function thah loops through specific movie and celebrity profession to echo a full name of every celebrity thah belong to specific movie
     // public function professions($id, $profession)
