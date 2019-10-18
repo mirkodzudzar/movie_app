@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleCreateRequest extends FormRequest
+class PriceCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class RoleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',//unique
+            'value' => 'required|numeric|min:0|not_in:0'
         ];
     }
 }

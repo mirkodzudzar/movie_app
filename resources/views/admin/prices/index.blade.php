@@ -42,17 +42,12 @@
               <?php $counter = $counter + 1; ?>
             @endforeach
           </td>
-          <td
-          <?php
-            if($movie->price)
-            {
-              echo "class='text-center bg-success'>".$movie->price['value']." $</td>";
-            }
-            else
-            {
-              echo "class='text-center bg-danger'>unaveilable</td>";
-            }
-          ?>
+
+            @if($movie->price)
+              <td class="text-center bg-success"><a href="{{ route('admin.prices.edit', $movie->id) }}">{{$movie->price['value']}} $</a></td>
+            @else
+              <td class="text-center bg-danger"><a href="{{ route('admin.prices.edit', $movie->id) }}">unaveilable</a></td>
+            @endif
         </tr>
       @empty
         <tr>

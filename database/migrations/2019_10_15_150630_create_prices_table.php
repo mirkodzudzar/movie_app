@@ -15,7 +15,7 @@ class CreatePricesTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('value');
+            $table->integer('value')->default(0);
             $table->integer('movie_id');
             $table->timestamps();
         });

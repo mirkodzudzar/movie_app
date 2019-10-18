@@ -24,7 +24,7 @@ class ProfessionCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+            'name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',//unique
         ];
     }
 }

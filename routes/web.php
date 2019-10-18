@@ -66,5 +66,9 @@ Route::group(['prefix' => 'admin'], function(){
     Route::delete('professions/{profession}', 'AdminProfessionsController@destroy');
 
     Route::get('prices', ['as' => 'admin.prices.index' , 'uses' => 'AdminPricesController@index']);
+    Route::post('prices', ['as' => 'admin.prices.create' , 'uses' => 'AdminPricesController@store']);
+    Route::get('prices/{price}', ['as' => 'admin.prices.edit' , 'uses' => 'AdminPricesController@edit']);
+    Route::patch('prices/{price}', 'AdminPricesController@update');
+    Route::delete('prices/{price}', 'AdminPricesController@destroy');
 
 });

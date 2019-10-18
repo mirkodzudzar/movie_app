@@ -68,4 +68,14 @@
   </div>
 
 
+@elseif(Session::has('updated_price'))
+  <div class="alert alert-success">
+    <p>{{session('updated_price')}}</p>
+  </div>
+@elseif(Session::has('deleted_price'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_price')}}</p>
+  </div>
+
+
 @endif

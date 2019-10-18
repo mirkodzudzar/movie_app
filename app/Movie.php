@@ -54,11 +54,11 @@ class Movie extends Model
           {
             if(++$i === $numItems)
             {
-              echo $celebrity->first_name;
+              echo $celebrity->first_name.' '.$celebrity->last_name;
             }
             else
             {
-              echo $celebrity->first_name.", ";
+              echo $celebrity->first_name.' '.$celebrity->last_name.", ";
             }
           }
         }

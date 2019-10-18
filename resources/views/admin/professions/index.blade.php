@@ -40,13 +40,13 @@
   </table>
 </div>
 <h2>Create new genre</h2>
-{{ Form::open(['method' => 'POST', 'action' => 'AdminGenresController@store', 'class' => 'col-md-12', 'files' => true]) }}
+{{ Form::open(['method' => 'POST', 'action' => 'AdminProfessionsController@store', 'class' => 'col-md-12', 'files' => true]) }}
   <div class="form-group">
     {{ Form::label('name', 'Name') }}
     {{ Form::text('name', null, ['class' => 'form-control']) }}
   </div>
   <div class="form-group">
-    {{ Form::submit('Create genre', ['class' => 'btn btn-primary']) }}
+    {{ Form::submit('Create profession', ['class' => 'btn btn-primary']) }}
   </div>
 {{ Form::close() }}
 @endsection
