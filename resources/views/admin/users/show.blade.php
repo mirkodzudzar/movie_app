@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('heading', $user->first_name.' '.$user->last_name)
+@section('heading', 'User - '.$user->full_name)
 
-@section('description', $user->first_name.' '.$user->last_name)
+@section('description', 'User - '.$user->full_name)
 
 @section('content')
   <div class="table-responsive">

@@ -12,6 +12,9 @@
         <th>Image</th>
         <th>Name (First/Last)</th>
         <th>Profession</th>
+        <th>Date of birth</th>
+        <th>State of birth</th>
+        <th>Profession</th>
         <th colspan="2">Created at/Updated at</th>
         <th colspan="2">Edit/Delete actions</th>
       </thead>
@@ -22,6 +25,8 @@
             <td class="text-center"><img height="50" src="http://placehold.it/700x200" alt=""></td>
             <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
             <td class="text-center">{{$celebrity->professions($celebrity->id)}}</td>
+            <td class="text-center">{{$celebrity->date_of_birth}}</td>
+            <td class="text-center">{{$celebrity->state_of_birth}}</td>
             <td class="text-center">{{date('Y-m-d', strtotime($celebrity->created_at))}}</td>
             <td class="text-center">{{date('Y-m-d', strtotime($celebrity->updated_at))}}</td>
             <td class="text-center"><a href="{{ route('admin.celebrities.edit', $celebrity->id )}}" class="btn btn-success">Edit</a></td>

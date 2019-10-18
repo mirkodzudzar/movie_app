@@ -55,7 +55,9 @@ class AdminCelebritiesController extends Controller
      */
     public function show($id)
     {
-        //
+        $celebrity = Celebrity::findOrFail($id);
+
+        return view('admin.celebrities.show', compact('celebrity'));
     }
 
     /**
