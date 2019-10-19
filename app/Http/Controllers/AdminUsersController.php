@@ -129,6 +129,8 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        $user->movies()->detach();
+        // $user->role()->dissociate();
         $user->delete();
         Session::flash('deleted_user', 'A user '.$user->first_name.' '.$user->last_name.' has been deleted.');
 

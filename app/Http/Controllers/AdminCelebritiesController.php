@@ -99,6 +99,7 @@ class AdminCelebritiesController extends Controller
     public function destroy($id)
     {
       $celebrity = Celebrity::findOrFail($id);
+      $celebrity->movies()->detach();
       $celebrity->delete();
       Session::flash('deleted_celebrity', 'A celebrity '.$celebrity->first_name.' '.$celebrity->last_name.' has been deleted.');
 

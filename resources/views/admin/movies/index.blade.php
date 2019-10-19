@@ -16,6 +16,8 @@
       <th>Release date</th>
       <th>Director(s)</th>
       <th>Actors(s)</th>
+      <th>Producer(s)</th>
+      <th>Writer(s)</th>
       <th>Genre</th>
       <th colspan="2">Created at/Updated at</th>
       <th colspan="2">Edit/Delete actions</th>
@@ -32,6 +34,8 @@
           <td class="text-center">{{$movie->release_date}}</td>
           <td class="text-center">{{$movie->professions($movie->id, 'director')}}</td>
           <td class="text-center">{{$movie->professions($movie->id, 'actor')}}</td>
+          <td class="text-center">{{$movie->professions($movie->id, 'producer')}}</td>
+          <td class="text-center">{{$movie->professions($movie->id, 'writer')}}</td>
           <td class="text-center">
             <?php
               $numItems = count($movie->genres()->get());

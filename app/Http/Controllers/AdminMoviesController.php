@@ -134,6 +134,9 @@ class AdminMoviesController extends Controller
         $movie = Movie::findOrFail($id);
         //Detaching all movie genres from genre_movie table
         $movie->genres()->detach();
+        $movie->users()->detach();
+        $movie->celebrities()->detach();
+        // $movie->price()->dissociate();
         $movie->delete();
         Session::flash('deleted_movie', 'The movie '.$movie->name.' has been deleted.');
 

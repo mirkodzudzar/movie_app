@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Support\Str;
 
 class Movie extends Model
 {
@@ -44,21 +45,31 @@ class Movie extends Model
     {
         // $movie = DB::table('movies')->where('id', $id)->first();
         $profession = DB::table('professions')->where('name', $profession)->first();
-        $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $id)->where('profession_id', $profession->id)->get();
-        $numItems = count($celebrity_movies);
-        $i = 0;
-        foreach($celebrity_movies as $celebrity_movie)
+        if($profession === null)
         {
-          $celebrities = DB::table('celebrities')->where('id', $celebrity_movie->celebrity_id)->get();
-          foreach($celebrities as $celebrity)
+          echo "<i>profession unavailable</i>";
+        }
+        else
+        {
+          $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $id)->where('profession_id', $profession->id)->get();
+
+          $numItems = count($celebrity_movies);
+          $i = 0;
+          foreach($celebrity_movies as $celebrity_movie)
           {
-            if(++$i === $numItems)
+            $celebrities = DB::table('celebrities')->where('id', $celebrity_movie->celebrity_id)->get();
+            foreach($celebrities as $celebrity)
             {
-              echo $celebrity->first_name.' '.$celebrity->last_name;
-            }
-            else
-            {
-              echo $celebrity->first_name.' '.$celebrity->last_name.", ";
+              if(++$i === $numItems)
+              {
+                //LIMIT A NUMBER OF CELEBRITIES PER PROFESSION TO ONE PRESON
+                // echo Str::words($celebrity->first_name.' '.$celebrity->last_name, $words = 1, $end = '...');
+                echo $celebrity->first_name.' '.$celebrity->last_name;
+              }
+              else
+              {
+                echo $celebrity->first_name.' '.$celebrity->last_name.", ";
+              }
             }
           }
         }

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('heading', $movie->name)
+@section('heading', 'Movie - '.$movie->name)
 
-@section('description', $movie->name)
+@section('description', 'Movie - '.$movie->name)
 
 @section('content')
   <div class="table-responsive">

@@ -50,6 +50,7 @@ class AdminGenresController extends Controller
     public function destroy($id)
     {
       $genre = Genre::findOrFail($id);
+      $genre->movies()->detach();
       $genre->delete();
       Session::flash('deleted_genre', 'The genre '.$genre->name.' has been deleted.');
 

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('heading', 'Price of movies')
+@section('heading', 'Prices of movies')
 
-@section('description', 'Price of movies')
+@section('description', 'Prices of movies')
 
 @section('content')
 <div class="table-responsive">

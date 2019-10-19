@@ -26,7 +26,7 @@ class Celebrity extends Model
   {
      return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
   }
-
+  //FIX COMA PROBLEM
   public function professions($id)
   {
       // $celebrity = DB::table('celebrities')->where('id', $id)->first();

@@ -16,8 +16,10 @@ class CreatePricesTable extends Migration
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('value')->default(0);
-            $table->integer('movie_id');
+            $table->bigInteger('movie_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }
 
@@ -26,8 +28,8 @@ class CreatePricesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('prices');
-    }
+     public function down()
+     {
+         Schema::dropIfExists('prices');
+     }
 }
