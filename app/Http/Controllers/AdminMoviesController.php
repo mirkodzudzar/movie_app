@@ -22,8 +22,9 @@ class AdminMoviesController extends Controller
     {
         //We need to sort movies by number of votes(likes or dislikes)
         $movies = Movie::all();
+        $professions = Profession::all();
 
-        return view('admin.movies.index', compact('movies'));
+        return view('admin.movies.index', compact('movies', 'professions'));
     }
 
     /**
@@ -38,10 +39,10 @@ class AdminMoviesController extends Controller
         //In this case, this method does not working because there is not a 'full_name' fild in movies table
         // $directors = Director::pluck('full_name', 'id')->all();
         $genres = Genre::all();
-        $professions = Profession::all();
+        $profession = Profession::where('name', 'director')->first();
         $celebrities = Celebrity::all();//paginate(5)
 
-        return view('admin.movies.create', compact('genres', 'professions', 'celebrities'));
+        return view('admin.movies.create', compact('genres', 'profession', 'celebrities'));
     }
 
     /**
@@ -56,6 +57,7 @@ class AdminMoviesController extends Controller
       $movie = Movie::create($input);
       //Attaching genres to the created movie, inserting values in genre_movie table
       $movie->genres()->attach($request->genre);
+      $movie->celebrities()->attach($request->celebrity, ['profession_id' => $request->profession_id]);
       Session::flash('created_movie', 'The movie '.$request->name.' has been created.');
 
       return redirect('admin/movies');
@@ -84,12 +86,12 @@ class AdminMoviesController extends Controller
     {
         $movie = Movie::findOrFail($id);
         $genres = Genre::all();
-        $professions = Profession::all();
+        $profession = Profession::where('name', 'director')->first();
         $celebrities = Celebrity::all();
 
         // $celebrities = Celebrity::all()->pluck('full_name', 'id');
 
-        return view('admin.movies.edit', compact('movie', 'genres', 'professions', 'celebrities'));
+        return view('admin.movies.edit', compact('movie', 'genres', 'profession', 'celebrities'));
     }
 
     /**
@@ -109,12 +111,22 @@ class AdminMoviesController extends Controller
       {
         $movie->genres()->detach();
       }
-
       else
       {
         $movie->genres()->detach();
         //Attaching genres to the created movie, inserting values in genre_movie table
         $movie->genres()->attach($request->genre);
+      }
+
+      if($request->celebrity == null)
+      {
+        $movie->celebrities()->detach();
+      }
+      else
+      {
+        $movie->celebrities()->detach();
+        //Attaching genres to the created movie, inserting values in genre_movie table
+        $movie->celebrities()->attach($request->celebrity, ['profession_id' => $request->profession_id]);
       }
 
       $movie->update($input);

@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('professions/{profession}', ['as' => 'admin.professions.edit' , 'uses' => 'AdminProfessionsController@edit']);
     Route::patch('professions/{profession}', 'AdminProfessionsController@update');
     Route::delete('professions/{profession}', 'AdminProfessionsController@destroy');
+    Route::get('professions/edit_profession/{id}/{movieId}', ['as' => 'admin.professions.edit_profession' , 'uses' => 'AdminProfessionsController@editProfession']);
+    Route::patch('professions/edit_profession/{id}/{movieId}', 'AdminProfessionsController@updateProfession');
 
     Route::get('prices', ['as' => 'admin.prices.index' , 'uses' => 'AdminPricesController@index']);
     Route::post('prices', ['as' => 'admin.prices.create' , 'uses' => 'AdminPricesController@store']);

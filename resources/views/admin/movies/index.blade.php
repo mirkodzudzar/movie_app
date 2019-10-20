@@ -14,12 +14,11 @@
       <th>Movie name</th>
       <th>Time duration</th>
       <th>Release date</th>
-      <th>Director(s)</th>
-      <th>Actors(s)</th>
-      <th>Producer(s)</th>
-      <th>Writer(s)</th>
+      @foreach($professions as $profession)
+        <th>{{$profession->name}}(s)</th>
+      @endforeach
       <th>Genre</th>
-      <th colspan="2">Created at/Updated at</th>
+      <th colspan="{{$professions->count()}}">Edit professions</th>
       <th colspan="2">Edit/Delete actions</th>
     </thead>
     <tbody>
@@ -32,10 +31,9 @@
           <td class="text-center"><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
           <td class="text-center">{{$movie->time_duration}}</td>
           <td class="text-center">{{$movie->release_date}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'director')}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'actor')}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'producer')}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'writer')}}</td>
+          @foreach($professions as $profession)
+            <td class="text-center">{{$movie->professions($movie->id, $profession->name)}}</td>
+          @endforeach
           <td class="text-center">
             <?php
               $numItems = count($movie->genres()->get());
@@ -49,8 +47,9 @@
               @endif
             @endforeach
           </td>
-          <td class="text-center">{{date('Y-m-d', strtotime($movie->created_at))}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($movie->updated_at))}}</td>
+          @foreach($professions as $profession)
+            <td><a href="{{ route('admin.professions.edit_profession', [$profession->id, $movie->id]) }}" class="btn btn-primary">{{$profession->name}}</a></td>
+          @endforeach
           <td class="text-center"><a href="{{ route('admin.movies.edit', $movie->id)}}" class="btn btn-success">Edit</a></td>
           <td class="text-center">
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminMoviesController@destroy', $movie->id]]) }}

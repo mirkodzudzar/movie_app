@@ -49,4 +49,20 @@ class Celebrity extends Model
         }
       }
   }
+
+  public function checkingCelebrity($movie_id, $celebrity_id, $profession_id)
+  {
+      $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $movie_id)->where('celebrity_id', $celebrity_id)->where('profession_id', $profession_id)->get();
+      foreach($celebrity_movies as $celebrity_movie)
+      {
+        if($celebrity_movie == null)
+        {
+          return false;
+        }
+        else
+        {
+          return true;
+        }
+      }
+  }
 }

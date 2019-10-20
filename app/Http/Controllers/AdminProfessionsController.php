@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profession;
+use App\Movie;
+use App\Celebrity;
 use App\Http\Requests\ProfessionCreateRequest;
 use App\Http\Requests\ProfessionEditRequest;
+use App\Http\Requests\ProfessionEditProfessionRequest;
 use Illuminate\Support\Facades\Session;
+use DB;
 
 class AdminProfessionsController extends Controller
 {
@@ -50,5 +54,35 @@ class AdminProfessionsController extends Controller
     Session::flash('deleted_profession', 'The profession '.$profession->name.' has been deleted.');
 
     return redirect('admin/professions');
+  }
+
+  public function editProfession($id, $movieId)
+  {
+    $profession = Profession::findOrFail($id);
+    $movie = movie::findOrFail($movieId);
+    $celebrities = Celebrity::all();
+    $celebrity_movie = DB::table('celebrity_movie')->where('movie_id', $movieId)->where('profession_id', $id)->first();
+
+    return view('admin.professions.edit_profession', compact('profession', 'celebrities', 'movie', 'celebrity_movie'));
+  }
+
+  public function updateProfession(ProfessionEditProfessionRequest $request, $id, $movie_id)
+  {
+    $input = $request->all();
+    $movie = Movie::findOrFail($movie_id);
+    if($request->celebrity == null)
+    {
+      $movie->celebrities()->detach();
+    }
+    else
+    {
+      $movie->celebrities()->detach();
+      //Attaching genres to the created movie, inserting values in genre_movie table
+      $movie->celebrities()->attach($request->celebrity, ['profession_id' => $request->profession_id]);
+    }
+
+    $movie->update($input);
+    Session::flash('updated_movie', 'The movie '.$movie->name.' has been updated.');
+    return redirect('admin/movies');
   }
 }

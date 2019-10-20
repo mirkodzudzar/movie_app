@@ -24,7 +24,7 @@ class Genre extends Model
     }
 
     //Improving checkbox functionality when we editing a movie
-    public function checking($movie_id, $genre_id)
+    public function checkingGenre($movie_id, $genre_id)
     {
         $genre_movies = DB::table('genre_movie')->where('movie_id', $movie_id)->where('genre_id', $genre_id)->get();
         foreach($genre_movies as $genre_movie)
