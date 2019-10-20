@@ -50,7 +50,6 @@
       <table class="table table-bordered table-hover">
         <thead class="text-center">
             <th class="bg-success">{{$profession->name}}</th>
-            {{Form::hidden('profession_id', $profession->id)}}
         </thead>
         <tbody>
           @foreach($celebrities as $celebrity)

@@ -32,7 +32,7 @@
           <td class="text-center">{{$movie->time_duration}}</td>
           <td class="text-center">{{$movie->release_date}}</td>
           @foreach($professions as $profession)
-            <td class="text-center">{{$movie->professions($movie->id, $profession->name)}}</td>
+            <td class="text-center">{{$movie->professions($movie->id, $profession->id)}}</td>
           @endforeach
           <td class="text-center">
             <?php

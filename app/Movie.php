@@ -41,10 +41,10 @@ class Movie extends Model
       return $this->hasOne('App\Price');
     }
     //Coma has been fixed. This function shows every celebrity for specific movie with specific profession
-    public function professions($id, $profession)
+    public function professions($id, $profession_id)
     {
         // $movie = DB::table('movies')->where('id', $id)->first();
-        $profession = DB::table('professions')->where('name', $profession)->first();
+        $profession = DB::table('professions')->where('id', $profession_id)->first();
         if($profession === null)
         {
           echo "<i>profession unavailable</i>";

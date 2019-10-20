@@ -72,13 +72,13 @@ class AdminProfessionsController extends Controller
     $movie = Movie::findOrFail($movie_id);
     if($request->celebrity == null)
     {
-      $movie->celebrities()->detach();
+      $movie->celebrities()->wherePivot('profession_id', $id)->detach();
     }
     else
     {
-      $movie->celebrities()->detach();
+      $movie->celebrities()->wherePivot('profession_id', $id)->detach();
       //Attaching genres to the created movie, inserting values in genre_movie table
-      $movie->celebrities()->attach($request->celebrity, ['profession_id' => $request->profession_id]);
+      $movie->celebrities()->attach($request->celebrity, ['profession_id' => $id]);
     }
 
     $movie->update($input);
