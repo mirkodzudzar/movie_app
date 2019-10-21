@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'date_of_birth', 'state_of_birth', 'username', 'email', 'password', 'role_id', //'photo_id',
+        'first_name', 'last_name', 'date_of_birth', 'state_of_birth', 'username', 'email', 'password', 'role_id', 'photo_id',
     ];
 
     /**
@@ -46,11 +46,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
-
-    // public function photos()
-    // {
-    //   return $this->morphMany('App\Photo', 'imageable');
-    // }
 
     public function photo()
     {

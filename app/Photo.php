@@ -17,22 +17,22 @@ class Photo extends Model
     //   return $this->uploads . $photo;
     // }
 
-    // protected $uploads = '/images/';
-    //
-    // public function getFileAttribute($photo)
-    // {
-    //
-    //   return $this->uploads . $photo;
-    //
-    // }
+    protected $uploads = '/images/';
 
-    // public function imageable()
-    // {
-    //   return $this->morphTo();
-    // }
+    public function getFileAttribute($photo)
+    {
+      return $this->uploads . $photo;
+    }
 
     public function user()
     {
       return $this->hasOne('App\User');
+    }
+
+    public static function noPhoto()
+    {
+
+      return 'http://denrakaev.com/wp-content/uploads/2015/03/no-image.png';
+
     }
 }

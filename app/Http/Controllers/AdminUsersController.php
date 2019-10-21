@@ -58,6 +58,14 @@ class AdminUsersController extends Controller
           $input['password'] = bcrypt($request->password);
         }
 
+        if($file = $request->file('photo_id'))
+        {
+          $name = time() . $file->getClientOriginalName();
+          $file->move('images', $name);
+          $photo = Photo::create(['file' => $name]);
+          $input['photo_id'] = $photo->id;
+        }
+
         $input['password'] = bcrypt($request->password);
         User::create($input);
 
@@ -114,6 +122,24 @@ class AdminUsersController extends Controller
           $input['password'] = bcrypt($request->password);
         }
 
+        if($file = $request->file('photo_id'))
+        {
+          if($user->photo)
+          {
+            unlink(public_path() . $user->photo->file);
+            $user->photo->delete();
+          }
+
+          $name = time() . $file->getClientOriginalName();
+          $file->move('images', $name);
+          $photo = Photo::create(['file' => $name]);
+          $input['photo_id'] = $photo->id;
+        }
+        else
+        {
+          $input['photo_id'] = $user->photo ? $user->photo->id : 0;
+        }
+
         $user->update($input);
         Session::flash('updated_user', 'A user '.$request->first_name.' '.$request->last_name.' has been updated.');
 
@@ -129,6 +155,12 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        if($user->photo)
+        {
+          unlink(public_path() . $user->photo->file);
+          $user->photo->delete();
+        }
+
         $user->movies()->detach();
         // $user->role()->dissociate();
         $user->delete();

@@ -27,9 +27,7 @@ class DatabaseSeeder extends Seeder
 
         factory(App\User::class, 10)->create();
         factory(App\Role::class, 3)->create();
-        // {
-        //   $user->photos()->save(factory(App\Photo::class)->make());
-        // });
+        // factory(App\Photo::class, 1)->create();
         factory(App\Movie::class, 10)->create();
         factory(App\Genre::class, 3)->create();
         factory(App\Celebrity::class, 10)->create();
@@ -49,13 +47,6 @@ class DatabaseSeeder extends Seeder
                 $movies->random(rand(1, 2))->pluck('id')->toArray()
             );
         });
-
-        // $professions = App\Profession::all();
-        // App\Celebrity::all()->each(function ($celebrity) use ($professions) {
-        //     $celebrity->professions()->attach(
-        //         $professions->random(rand(1, 2))->pluck('id')->toArray()
-        //     );
-        // });
 
         //Movie has many celebrities with some professions
         $celebrities = App\Celebrity::all();

@@ -25,7 +25,7 @@
         @forelse($users as $user)
           <tr>
             <td class="text-center">{{$user->id}}</td>
-            <td><img height="50" src="http://placehold.it/700x200" alt=""></td>
+            <td class="text-center"><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></td>
             <td><a href="{{ route('admin.users.show', $user->id) }}">{{$user->full_name}}</a></td>
             <td>{{$user->username}}</td>
             <td>{{$user->email}}</td>
