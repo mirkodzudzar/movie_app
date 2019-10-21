@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Price;
+use App\Profession;
 use App\Http\Requests\PriceCreateRequest;
 use App\Http\Requests\PriceEditRequest;
 use Illuminate\Support\Facades\Session;
@@ -14,9 +15,11 @@ class AdminPricesController extends Controller
 {
     public function index()
     {
+      //STILL NEED TO SORT MOVIES BY PRICE VALUE
       $movies = Movie::all()->sortBy('movie.price.value');
+      $professions = Profession::all();
 
-      return view('admin.prices.index', compact('movies'));
+      return view('admin.prices.index', compact('movies', 'professions'));
     }
 
     //By default, movie gets a price value. In case we using seeds, some movie does not get a value. fixed
@@ -24,7 +27,7 @@ class AdminPricesController extends Controller
     {
       $movie = Movie::findOrFail($id);
       $price = Price::where('movie_id', $id)->first();
-      //Checking if value of price exist. If it's not exist, price get a value 0 and needs to be edited because it can not be a 0.
+      //Checking if value of price exist. If it's not exist, price gets a value 0 and it needs to be edited because it can not be a 0.
       if($price === null)
       {
         $price = new Price;
@@ -38,7 +41,7 @@ class AdminPricesController extends Controller
         $price = Price::where('movie_id', $id)->first();
       }
 
-      return view('admin.prices.edit', compact('price'));
+      return view('admin.prices.edit', compact('price', 'movie'));
     }
 
     public function update(PriceEditRequest $request, $id)

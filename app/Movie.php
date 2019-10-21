@@ -45,42 +45,44 @@ class Movie extends Model
     {
         // $movie = DB::table('movies')->where('id', $id)->first();
         $profession = DB::table('professions')->where('id', $profession_id)->first();
-        if($profession === null)
-        {
-          echo "<i>profession unavailable</i>";
-        }
-        else
-        {
-          $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $id)->where('profession_id', $profession->id)->get();
+        // if($profession === null)
+        // {
+        //   echo "<i>profession unavailable</i>";
+        // }
+        // else
+        // {
+        $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $id)->where('profession_id', $profession->id)->get();
 
-          $numItems = count($celebrity_movies);
-          $i = 0;
-          foreach($celebrity_movies as $celebrity_movie)
+        $numItems = count($celebrity_movies);
+        $i = 0;
+        foreach($celebrity_movies as $celebrity_movie)
+        {
+          $celebrities = DB::table('celebrities')->where('id', $celebrity_movie->celebrity_id)->get();
+          foreach($celebrities as $celebrity)
           {
-            $celebrities = DB::table('celebrities')->where('id', $celebrity_movie->celebrity_id)->get();
-            foreach($celebrities as $celebrity)
+            if(++$i === $numItems)
             {
-              if(++$i === $numItems)
-              {
-                //LIMIT A NUMBER OF CELEBRITIES PER PROFESSION TO ONE PRESON
-                // echo Str::words($celebrity->first_name.' '.$celebrity->last_name, $words = 1, $end = '...');
-                echo $celebrity->first_name.' '.$celebrity->last_name;
-              }
-              else
-              {
-                echo $celebrity->first_name.' '.$celebrity->last_name.", ";
-              }
+              //LIMIT A NUMBER OF CELEBRITIES PER PROFESSION TO ONE PRESON
+              // echo Str::words($celebrity->first_name.' '.$celebrity->last_name, $words = 1, $end = '...');
+              echo $celebrity->first_name.' '.$celebrity->last_name;
             }
+            else
+            {
+              echo $celebrity->first_name.' '.$celebrity->last_name.", ";
+            }
+          // }
           }
         }
     }
 
+    //Function for showing number of likes
     public function likes($id)
     {
       $movie_users = DB::table('movie_user')->where('movie_id', $id)->where('like', 1)->get();
       return $movie_users->count();
     }
 
+    //Function for showing number of dislikes
     public function dislikes($id)
     {
       $movie_users = DB::table('movie_user')->where('movie_id', $id)->where('like', 0)->get();

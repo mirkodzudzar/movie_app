@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Celebrities')
+
 @section('heading', 'Celebrities')
 
 @section('description', 'Celebrities')
@@ -14,7 +16,6 @@
         <th>Profession</th>
         <th>Date of birth</th>
         <th>State of birth</th>
-        <th>Profession</th>
         <th colspan="2">Created at/Updated at</th>
         <th colspan="2">Edit/Delete actions</th>
       </thead>

@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('heading', 'Edit genre')
+@section('title', 'Movie Application - Edit genre '.$genre->name)
 
-@section('description', 'Edit genre')
+@section('heading', 'Edit genre - '.$genre->name)
+
+@section('description', 'Edit genre - '.$genre->name)
 
 @section('content')
 

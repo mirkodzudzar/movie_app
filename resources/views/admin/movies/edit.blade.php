@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('heading', 'Edit movie')
+@section('title', 'Movie Application - Edit movie '.$movie->name)
 
-@section('description', 'Edit movie')
+@section('heading', 'Edit movie - '.$movie->name)
+
+@section('description', 'Edit movie - '.$movie->name)
 
 @section('content')
 
@@ -56,7 +58,7 @@
             <tr>
               <!-- getFullNameAttribute -->
               <td>
-                {{ Form::checkbox('celebrity[]', $celebrity->id, $celebrity->checkingCelebrity($movie->id, $celebrity->id), ['class' => 'form-check-inpit'])}}
+                {{ Form::checkbox('celebrity[]', $celebrity->id, $celebrity->checkingCelebrity($movie->id, $celebrity->id, $profession->id), ['class' => 'form-check-inpit'])}}
                 {{ Form::label('$celebrity->id', $celebrity->full_name, ['class' => 'form-check-label'])}}
               </td>
             </tr>

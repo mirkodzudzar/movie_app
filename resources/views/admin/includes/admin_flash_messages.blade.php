@@ -92,4 +92,10 @@
   </div>
 
 
+@elseif(Session::has('updated_profession'))
+  <div class="alert alert-success">
+    <p>{{session('updated_profession')}}</p>
+  </div>
+
+
 @endif

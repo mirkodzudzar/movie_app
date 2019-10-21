@@ -26,7 +26,8 @@ class Celebrity extends Model
   {
      return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
   }
-  //FIX COMA PROBLEM
+  //FIX COMA PROBLEM AFTER DELETING SOME OF THE PROFESSIONS
+  //Function for showing a professions for specific celebrity
   public function professions($id)
   {
       // $celebrity = DB::table('celebrities')->where('id', $id)->first();
@@ -50,6 +51,7 @@ class Celebrity extends Model
       }
   }
 
+  //Improving checkbox functionality when we editing a celebrity. This is a function for checking specific checkboxes thet are already saved in celebrity_movie table
   public function checkingCelebrity($movie_id, $celebrity_id, $profession_id)
   {
       $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $movie_id)->where('celebrity_id', $celebrity_id)->where('profession_id', $profession_id)->get();

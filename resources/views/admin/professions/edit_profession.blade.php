@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('heading', '/')
+@section('title', 'Movie Application - Edit '.$profession->name.' for movie '.$movie->name)
 
-@section('description', '/')
+@section('heading', 'Edit '.$profession->name.' for movie - '.$movie->name)
+
+@section('description', 'Edit '.$profession->name.' for movie - '.$movie->name)
 
 @section('content')
 

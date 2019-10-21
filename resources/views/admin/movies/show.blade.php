@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Movie - '.$movie->name)
+
 @section('heading', 'Movie - '.$movie->name)
 
 @section('description', 'Movie - '.$movie->name)
@@ -19,6 +21,14 @@
         <td>{{$movie->name}}</td>
       </tr>
       <tr>
+        <th>Likes</th>
+        <td>{{$movie->likes($movie->id)}}</td>
+      </tr>
+      <tr>
+        <th>Dislikes</th>
+        <td>{{$movie->dislikes($movie->id)}}</td>
+      </tr>
+      <tr>
         <th>Time duration</th>
         <td>{{$movie->time_duration}}</td>
       </tr>
@@ -27,20 +37,12 @@
         <td>{{$movie->release_date}}</td>
       </tr>
       <tr>
-        <th>Director(s)</th>
-        <td>{{$movie->professions($movie->id, 'director')}}</td>
-      </tr>
-      <tr>
-        <th>Actors(s)</th>
-        <td>{{$movie->professions($movie->id, 'actor')}}</td>
-      </tr>
-      <tr>
-        <th>Producer(s)</th>
-        <td>{{$movie->professions($movie->id, 'producer')}}</td>
-      </tr>
-      <tr>
-        <th>Writer(s)</th>
-        <td>{{$movie->professions($movie->id, 'writer')}}</td>
+      @foreach($professions as $profession)
+        <tr>
+          <th>{{$profession->name}}(s)</th>
+          <td>{{$movie->professions($movie->id, $profession->id)}}</td>
+        </tr>
+      @endforeach
       </tr>
       <tr>
         <th>Genre</th>

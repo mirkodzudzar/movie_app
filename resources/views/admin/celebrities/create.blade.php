@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Create celebrity')
+
 @section('heading', 'Create new celebrity')
 
 @section('description', 'Create new celebrity')

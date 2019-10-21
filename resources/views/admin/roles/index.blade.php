@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Roles')
+
 @section('heading', 'Roles')
 
 @section('description', 'Roles')

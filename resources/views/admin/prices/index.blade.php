@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Prices of movies')
+
 @section('heading', 'Prices of movies')
 
 @section('description', 'Prices of movies')
@@ -13,8 +15,9 @@
       <th>Name</th>
       <th>Time duration</th>
       <th>Release date</th>
-      <th>Director(s)</th>
-      <th>Actors(s)</th>
+      @foreach($professions as $profession)
+        <th>{{$profession->name}}(s)</th>
+      @endforeach
       <th>Genre</th>
       <th>Price</th>
     </thead>
@@ -26,8 +29,9 @@
           <td class="text-center"><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
           <td class="text-center">{{$movie->time_duration}}</td>
           <td class="text-center">{{$movie->release_date}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'director')}}</td>
-          <td class="text-center">{{$movie->professions($movie->id, 'actor')}}</td>
+          @foreach($professions as $profession)
+            <td class="text-center">{{$movie->professions($movie->id, $profession->id)}}</td>
+          @endforeach
           <td class="text-center">
             <?php
               $counter = 1;

@@ -68,6 +68,7 @@ class AdminProfessionsController extends Controller
 
   public function updateProfession(ProfessionEditProfessionRequest $request, $id, $movie_id)
   {
+    $profession = Profession::findOrFail($id);
     $input = $request->all();
     $movie = Movie::findOrFail($movie_id);
     if($request->celebrity == null)
@@ -82,7 +83,7 @@ class AdminProfessionsController extends Controller
     }
 
     $movie->update($input);
-    Session::flash('updated_movie', 'The movie '.$movie->name.' has been updated.');
+    Session::flash('updated_profession', 'The '.$profession->name.' of a movie '.$movie->name.' has been updated.');
     return redirect('admin/movies');
   }
 }

@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Movies')
+
 @section('heading', 'Movies')
 
 @section('description', 'Movies')

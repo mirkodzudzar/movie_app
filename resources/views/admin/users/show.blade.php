@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - User '.$user->full_name)
+
 @section('heading', 'User - '.$user->full_name)
 
 @section('description', 'User - '.$user->full_name)

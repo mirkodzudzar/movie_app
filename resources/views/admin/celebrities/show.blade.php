@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Celebrity '.$celebrity->full_name)
+
 @section('heading', 'Celebrity - '.$celebrity->full_name)
 
 @section('description', 'Celebrity - '.$celebrity->full_name)

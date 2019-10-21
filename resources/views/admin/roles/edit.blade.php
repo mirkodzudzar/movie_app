@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('heading', 'Edit role')
+@section('title', 'Movie Application - Edit role '.$role->name)
 
-@section('description', 'Edit role')
+@section('heading', 'Edit role - '.$role->name)
+
+@section('description', 'Edit role - '.$role->name)
 
 @section('content')
 

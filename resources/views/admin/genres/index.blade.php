@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Movie Application - Genres')
+
 @section('heading', 'Genres')
 
 @section('description', 'Genres')

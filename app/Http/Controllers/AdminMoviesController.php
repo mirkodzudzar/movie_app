@@ -72,8 +72,9 @@ class AdminMoviesController extends Controller
     public function show($id)
     {
         $movie = Movie::findOrFail($id);
+        $professions = Profession::all();
 
-        return view('admin.movies.show', compact('movie'));
+        return view('admin.movies.show', compact('movie', 'professions'));
     }
 
     /**
@@ -125,7 +126,7 @@ class AdminMoviesController extends Controller
       else
       {
         $movie->celebrities()->detach();
-        //Attaching genres to the created movie, inserting values in genre_movie table
+        //Attaching celebrities to the created movie, inserting values in celebrity_movie table, also with specific profession
         $movie->celebrities()->attach($request->celebrity, ['profession_id' => $request->profession_id]);
       }
 
@@ -144,7 +145,7 @@ class AdminMoviesController extends Controller
     public function destroy($id)
     {
         $movie = Movie::findOrFail($id);
-        //Detaching all movie genres from genre_movie table
+        //Detaching all movie genres, users and celebrities from pivot tables
         $movie->genres()->detach();
         $movie->users()->detach();
         $movie->celebrities()->detach();
