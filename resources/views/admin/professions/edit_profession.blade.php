@@ -12,7 +12,7 @@
     <div class="table-responsive">
       {{ Form::label('profession', 'Professions') }}
       <table class="table table-bordered table-hover">
-        <thead class="text-center">
+        <thead class="text-center bg-success">
             <th class="bg-success">{{$profession->name}}</th>
             {{Form::hidden('profession_id', $profession->id)}}
         </thead>

@@ -17,14 +17,14 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('date_of_birth')->format('Y-m-d');
-            $table->string('state_of_birth');
+            $table->date('date_of_birth')->format('Y-m-d')->nullable();
+            $table->string('state_of_birth')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('role_id')->default(1);
-            $table->integer('photo_id');
+            $table->integer('role_id')->nullable();
+            $table->integer('photo_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

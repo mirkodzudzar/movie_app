@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MovieCreateRequest extends FormRequest
+class ImageCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class MovieCreateRequest extends FormRequest
     public function rules()
     {
         return [
-          // 'name' => 'required|string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
-          // 'description' => 'required',
-          // 'time_duration' => '',
-          // 'release_date' => 'date',
+            'image_id' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

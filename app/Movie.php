@@ -12,10 +12,10 @@ class Movie extends Model
       'name', 'description', 'time_duration', 'release_date',
     ];
 
-    // public function director()
-    // {
-    //   return $this->belongsTo('App\Director');
-    // }
+    public function images()
+    {
+      return $this->morphToMany('App\Image', 'imageable');
+    }
 
     public function genres()
     {

@@ -63,10 +63,6 @@
         </tbody>
       </table>
     </div>
-    <!-- <div class="form-group">
-      {{ Form::label('photo_id', 'Photo:') }}
-      {{ Form::file('photo_id', null) }}
-    </div> -->
     <div class="form-group">
       {{ Form::submit('Create movie', ['class' => 'btn btn-primary']) }}
     </div>

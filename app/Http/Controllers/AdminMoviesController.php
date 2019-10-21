@@ -40,7 +40,7 @@ class AdminMoviesController extends Controller
         // $directors = Director::pluck('full_name', 'id')->all();
         $genres = Genre::all();
         $profession = Profession::where('name', 'director')->first();
-        $celebrities = Celebrity::all();//paginate(5)
+        $celebrities = Celebrity::all()->sortBy('last_name');//paginate(5)
 
         return view('admin.movies.create', compact('genres', 'profession', 'celebrities'));
     }
@@ -53,7 +53,7 @@ class AdminMoviesController extends Controller
      */
     public function store(MovieCreateRequest $request)
     {
-      $input = $request->all();
+      return $input = $request->all();
       $movie = Movie::create($input);
       //Attaching genres to the created movie, inserting values in genre_movie table
       $movie->genres()->attach($request->genre);

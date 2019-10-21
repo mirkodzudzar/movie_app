@@ -24,10 +24,10 @@ class MovieEditRequest extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
-          'description' => '',
-          'time_duration' => '',
-          'release_date' => 'date',
+          // 'name' => 'string|max:255|required|regex: /^([a-zA-Z\' ]+)$/',
+          // 'description' => '',
+          // 'time_duration' => '',
+          // 'release_date' => 'date',
         ];
     }
 }

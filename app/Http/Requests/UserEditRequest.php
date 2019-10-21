@@ -31,7 +31,8 @@ class UserEditRequest extends FormRequest
           'username' => 'required|string|max:255',//unique:users
           'email' => 'required|string|email|max:255',//unique:users
           'password' => 'confirmed',
-          'role_id' => 'required|integer'
+          'role_id' => 'required|integer',
+          'photo_id' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

@@ -9,7 +9,7 @@
 @section('content')
 <div class="table-responsive">
   <table class="table table-bordered table-hover">
-    <thead class="text-center">
+    <thead class="text-center bg-success">
       <th>Id</th>
       <th colspan="2">Like/Dislike</th>
       <th>Image</th>

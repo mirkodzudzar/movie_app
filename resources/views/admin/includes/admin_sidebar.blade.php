@@ -14,8 +14,8 @@
         <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <!-- Shange this later -->
-        <a href="#" class="d-block"></a>
+        <!-- Change this later -->
+        <a href="#" class="d-block">LOGIN USER</a>
       </div>
     </div>
 
@@ -34,13 +34,13 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-film"></i>
             <p>
               Movies
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview" style="text-indent: 15px;">
             <li class="nav-item">
               <a href="{{ route('admin.movies.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -69,13 +69,13 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-user-tie"></i>
             <p>
               Celebrities
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview" style="text-indent: 15px;">
             <li class="nav-item">
               <a href="{{ route('admin.celebrities.index' )}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -98,13 +98,13 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-user"></i>
             <p>
               Users
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview" style="text-indent: 15px;">
             <li class="nav-item">
               <a href="{{ route('admin.users.index' )}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -125,14 +125,43 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-image"></i>
+            <p>
+              Images
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview" style="text-indent: 15px;">
+            <li class="nav-item">
+              <a href="{{ route('admin.images.index') }}#celebrities" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Images for celebrities</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.images.index') }}#movies" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Images for movies</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.images.index') }}#create_image" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create new image</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                News by authors
-              </p>
-            </a>
-          </li>
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              News by authors
+            </p>
+          </a>
+        </li>
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}"

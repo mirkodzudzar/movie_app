@@ -17,7 +17,7 @@ class CreateMovieUserTable extends Migration
             $table->bigIncrements('id');
             $table->integer('movie_id')->unsigned()->nullable()->index();
             $table->integer('user_id')->unsigned()->nullable()->index();
-            $table->boolean('like')->default(0);
+            $table->boolean('like')->default(1);
             $table->timestamps();
         });
     }

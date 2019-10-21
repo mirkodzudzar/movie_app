@@ -53,8 +53,12 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'date_of_birth' => ['date_format:Y-m-d', 'before:today', 'nullable'],
+            'state_of_birth' => ['string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'role_id' => ['integer'],
+            'photo_id' => ['integer']
+          ]);
     }
 
     /**
@@ -70,11 +74,11 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'username' => $data['username'],
             'email' => $data['email'],
+            'date_of_birth' => null,
+            'state_of_birth' => null,
             'password' => Hash::make($data['password']),
+            'role_id' => null,
+            'photo_id' => null,
         ]);
-
-        $user->photos()->create(['path' => 'no_image']);
-
-        return $user;
     }
 }

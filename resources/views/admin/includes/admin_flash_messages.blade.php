@@ -1,3 +1,4 @@
+<!-- Messages for users -->
 @if(Session::has('created_user'))
   <div class="alert alert-success">
     <p>{{session('created_user')}}</p>
@@ -11,7 +12,7 @@
     <p>{{session('deleted_user')}}</p>
   </div>
 
-
+<!-- Messages for movies -->
 @elseif(Session::has('created_movie'))
   <div class="alert alert-success">
     <p>{{session('created_movie')}}</p>
@@ -25,7 +26,7 @@
     <p>{{session('deleted_movie')}}</p>
   </div>
 
-
+<!-- Messages for roles -->
 @elseif(Session::has('created_role'))
   <div class="alert alert-success">
     <p>{{session('created_role')}}</p>
@@ -39,7 +40,7 @@
     <p>{{session('deleted_role')}}</p>
   </div>
 
-
+<!-- Messages for genres -->
 @elseif(Session::has('created_genre'))
   <div class="alert alert-success">
     <p>{{session('created_genre')}}</p>
@@ -53,7 +54,7 @@
     <p>{{session('deleted_genre')}}</p>
   </div>
 
-
+<!-- Messages for professions -->
 @elseif(Session::has('created_profession'))
   <div class="alert alert-success">
     <p>{{session('created_profession')}}</p>
@@ -66,8 +67,12 @@
   <div class="alert alert-success">
     <p>{{session('deleted_profession')}}</p>
   </div>
+@elseif(Session::has('updated_profession'))
+  <div class="alert alert-success">
+    <p>{{session('updated_profession')}}</p>
+  </div>
 
-
+<!-- Messages for movie prices -->
 @elseif(Session::has('updated_price'))
   <div class="alert alert-success">
     <p>{{session('updated_price')}}</p>
@@ -77,7 +82,7 @@
     <p>{{session('deleted_price')}}</p>
   </div>
 
-
+<!-- Messages for celebrities -->
 @elseif(Session::has('created_celebrity'))
   <div class="alert alert-success">
     <p>{{session('created_celebrity')}}</p>
@@ -91,10 +96,14 @@
     <p>{{session('deleted_celebrity')}}</p>
   </div>
 
-
-@elseif(Session::has('updated_profession'))
+<!-- Messages for images -->
+@elseif(Session::has('created_image'))
   <div class="alert alert-success">
-    <p>{{session('updated_profession')}}</p>
+    <p>{{session('created_image')}}</p>
+  </div>
+@elseif(Session::has('create_image_error'))
+  <div class="alert alert-danger">
+    <p>{{session('create_image_error')}}</p>
   </div>
 
 
