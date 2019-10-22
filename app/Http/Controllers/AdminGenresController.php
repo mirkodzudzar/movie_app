@@ -7,18 +7,27 @@ use App\Genre;
 use App\Http\Requests\GenreCreateRequest;
 use App\Http\Requests\GenreEditRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminGenresController extends Controller
 {
     public function index()
     {
       $genres = Genre::all()->sortBy('name');
+      $query = Input::get('query');
+
+      if($query != '')
+      {
+        $genre = Genre::where('name', 'LIKE', '%' . $query . '%')->get();
+        if(count($genre) > 0)
+        {
+          return view('admin.genres.index', compact('genres'))->withDetails($genre)->withQuery($query);
+        }
+
+        return view('admin.genres.index', compact('genres'))->withMessage('No genres found!');
+      }
 
       return view('admin.genres.index', compact('genres'));
-
-      // $genre = Genre::whereId(1)->first();
-      //
-      // echo $genre->pivot->movie_id;
     }
 
     public function store(GenreCreateRequest $request)

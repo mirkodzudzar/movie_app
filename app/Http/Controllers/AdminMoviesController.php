@@ -10,6 +10,7 @@ use App\Profession;
 use App\Http\Requests\MovieCreateRequest;
 use App\Http\Requests\MovieEditRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminMoviesController extends Controller
 {
@@ -23,6 +24,18 @@ class AdminMoviesController extends Controller
         //We need to sort movies by number of votes(likes or dislikes)
         $movies = Movie::all();
         $professions = Profession::all();
+        $query = Input::get('query');
+
+        if($query != '')
+        {
+          $movie = Movie::where('name', 'LIKE', '%' . $query . '%')->get();
+          if(count($movie) > 0)
+          {
+            return view('admin.movies.index', compact('movies', 'professions'))->withDetails($movie)->withQuery($query);
+          }
+
+          return view('admin.movies.index', compact('movies', 'professions'))->withMessage('No movies found!');
+        }
 
         return view('admin.movies.index', compact('movies', 'professions'));
     }

@@ -7,6 +7,7 @@ use App\Celebrity;
 use App\Http\Requests\CelebrityCreateRequest;
 use App\Http\Requests\CelebrityEditRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminCelebritiesController extends Controller
 {
@@ -18,6 +19,18 @@ class AdminCelebritiesController extends Controller
     public function index()
     {
         $celebrities = Celebrity::all()->sortBy('last_name');
+        $query = Input::get('query');
+
+        if($query != '')
+        {
+          $celebrity = Celebrity::where('first_name', 'LIKE', '%' . $query . '%')->orWhere('last_name', 'LIKE', '%' . $query . '%')->get();
+          if(count($celebrity) > 0)
+          {
+            return view('admin.celebrities.index', compact('celebrities'))->withDetails($celebrity)->withQuery($query);
+          }
+
+          return view('admin.celebrities.index', compact('celebrities'))->withMessage('No celebrities found!');
+        }
 
         return view('admin.celebrities.index', compact('celebrities'));
     }

@@ -2,11 +2,50 @@
 
 @section('title', 'Movie Application - Celebrities')
 
+@section('search_form')
+  {{ Form::open(['method' => 'POST', 'action' => 'AdminCelebritiesController@index', 'role' => 'search', 'class' => 'form-inline ml-3']) }}
+    <div class="input-group input-group-sm">
+      {{ Form::text('query', '', ['class' => 'form-control form-control-navbar', 'placeholder' => 'Search for celebrities', 'aria-label' => 'Search']) }}
+      <div class="input-group-append">
+        <button class="btn btn-navbar" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  {{ Form::close() }}
+@endsection
+
 @section('heading', 'Celebrities')
 
 @section('description', 'Celebrities')
 
 @section('content')
+@if(isset($details))
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="bg-primary">
+      <tr>
+        <td colspan="3">The search results for <b> {{$query}} </b> are: </td>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($details as $celebrity)
+        <tr>
+          <td class="text-center">{{$celebrity->id}}</td>
+          <td class="text-center"><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
+          <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
+  <!-- When you search for empty string, it will not show a message -->
+  @elseif(isset($message))
+    <div class="alert alert-danger">
+      <p>{{$message}}</p>
+    </div>
+  @endif
+</div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="text-center bg-success">

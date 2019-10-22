@@ -10,6 +10,7 @@ use App\Http\Requests\ProfessionCreateRequest;
 use App\Http\Requests\ProfessionEditRequest;
 use App\Http\Requests\ProfessionEditProfessionRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\input;
 use DB;
 
 class AdminProfessionsController extends Controller
@@ -17,6 +18,18 @@ class AdminProfessionsController extends Controller
   public function index()
   {
     $professions = Profession::all()->sortBy('name');
+    $query = Input::get('query');
+
+    if($query != '')
+    {
+      $profession = Profession::where('name', 'LIKE', '%' . $query . '%')->get();
+      if(count($profession) > 0)
+      {
+        return view('admin.professions.index', compact('professions'))->withDetails($profession)->withQuery($query);
+      }
+
+      return view('admin.professions.index', compact('professions'))->withMessage('No professions found!');
+    }
 
     return view('admin.professions.index', compact('professions'));
   }

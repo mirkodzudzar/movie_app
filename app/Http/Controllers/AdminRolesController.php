@@ -7,12 +7,25 @@ use App\Role;
 use App\Http\Requests\RoleCreateRequest;
 use App\Http\Requests\RoleEditRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminRolesController extends Controller
 {
     public function index()
     {
       $roles = Role::all()->sortBy('name');
+      $query = Input::get('query');
+
+      if($query != '')
+      {
+        $role = Role::where('name', 'LIKE', '%' . $query . '%')->get();
+        if(count($role) > 0)
+        {
+          return view('admin.roles.index', compact('roles'))->withDetails($role)->withQuery($query);
+        }
+
+        return view('admin.roles.index', compact('roles'))->withMessage('No roles found!');
+      }
 
       return view('admin.roles.index', compact('roles'));
     }

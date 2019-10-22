@@ -2,11 +2,48 @@
 
 @section('title', 'Movie Application - Genres')
 
+@section('search_form')
+  {{ Form::open(['method' => 'POST', 'action' => 'AdminGenresController@index', 'role' => 'search', 'class' => 'form-inline ml-3']) }}
+    <div class="input-group input-group-sm">
+      {{ Form::text('query', '', ['class' => 'form-control form-control-navbar', 'placeholder' => 'Search for genres', 'aria-label' => 'Search']) }}
+      <div class="input-group-append">
+        <button class="btn btn-navbar" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  {{ Form::close() }}
+@endsection
+
 @section('heading', 'Genres')
 
 @section('description', 'Genres')
 
 @section('content')
+@if(isset($details))
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="bg-primary">
+      <tr>
+        <td>The search results for <b> {{$query}} </b> are: </td>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($details as $genre)
+        <tr>
+          <td><a href="{{route('admin.genres.edit', $genre->id)}}">{{$genre->name}}</a></td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
+  <!-- When you search for empty string, it will not show a message -->
+  @elseif(isset($message))
+    <div class="alert alert-danger">
+      <p>{{$message}}</p>
+    </div>
+  @endif
+</div>
 <div class="table-responsive">
   <table class="table table-bordered table-hover">
     <thead class="text-center bg-success">
@@ -35,7 +72,7 @@
         </tr>
       @empty
         <tr>
-          <th colspan='11' class="text-center">No movies found.</th>
+          <th colspan='11' class="text-center">No genres found.</th>
         </tr>
       @endforelse
     </tbody>

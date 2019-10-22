@@ -9,6 +9,7 @@ use App\Profession;
 use App\Http\Requests\PriceCreateRequest;
 use App\Http\Requests\PriceEditRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 use DB;
 
 class AdminPricesController extends Controller
@@ -18,6 +19,18 @@ class AdminPricesController extends Controller
       //STILL NEED TO SORT MOVIES BY PRICE VALUE
       $movies = Movie::all()->sortBy('movie.price.value');
       $professions = Profession::all();
+      $query = Input::get('query');
+
+      if($query != '')
+      {
+        $movie = Movie::where('name', 'LIKE', '%' . $query . '%')->get();
+        if(count($movie) > 0)
+        {
+          return view('admin.prices.index', compact('movies', 'professions'))->withDetails($movie)->withQuery($query);
+        }
+
+        return view('admin.prices.index', compact('movies', 'professions'))->withMessage('No movies found!');
+      }
 
       return view('admin.prices.index', compact('movies', 'professions'));
     }

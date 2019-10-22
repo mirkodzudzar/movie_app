@@ -10,6 +10,7 @@ use App\Storage;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserEditRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminUsersController extends Controller
 {
@@ -21,6 +22,18 @@ class AdminUsersController extends Controller
     public function index()
     {
         $users = User::all()->sortBy('last_name');
+        $query = Input::get('query');
+
+        if($query != '')
+        {
+          $user = User::where('first_name', 'LIKE', '%' . $query . '%')->orWhere('last_name', 'LIKE', '%' . $query . '%')->get();
+          if(count($user) > 0)
+          {
+            return view('admin.users.index', compact('users'))->withDetails($user)->withQuery($query);
+          }
+
+          return view('admin.users.index', compact('users'))->withMessage('No users found!');
+        }
 
         return view('admin.users.index', compact('users'));
     }
