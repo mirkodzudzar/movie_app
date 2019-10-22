@@ -89,46 +89,18 @@ class Movie extends Model
       return $movie_users->count();
     }
 
-    //FIX THAT COMMA AT THE END OF EVERY FULL NAME, MAKE THIS FUNCTION SIMPLER, OR MAYBE EVEN CHANGE WHOLE FUNCTIONALITY
-    //This is a function thah loops through specific movie and celebrity profession to echo a full name of every celebrity thah belong to specific movie
-    // public function professions($id, $profession)
-    // {
-    //   $movie = DB::table('movies')->where('id', $id)->first();
-    //   $celebrity_movie_celebrity_id = DB::table('celebrity_movie')->where('movie_id', $movie->id)->get();
-    //
-    //   $director = DB::table('professions')->where('name', $profession)->first();
-    //   $celebrity_profession_celebrity_id = DB::table('celebrity_profession')->where('profession_id', $director->id)->get();
-    //
-    //   foreach($celebrity_movie_celebrity_id as $celebrity_id)
-    //   {
-    //     foreach($celebrity_profession_celebrity_id as $celebrity_iddd)
-    //     {
-    //       if($celebrity_id->celebrity_id == $celebrity_iddd->celebrity_id)
-    //       {
-    //         $celebrities = DB::table('celebrities')->where('id', $celebrity_id->celebrity_id)->get();
-    //         $numItems = count($celebrities);
-    //         $i = 0;
-    //         foreach($celebrities as $celebrity)
-    //         {
-    //           if(++$i === $numItems)
-    //           {
-    //             echo $celebrity->first_name." ".$celebrity->last_name;
-    //           }
-    //           else
-    //           {
-    //             echo $celebrity->first_name." ".$celebrity->last_name.", ";
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    //Function for showing first image for every movie, if it exist
+    public function showMovieImage($id)
+    {
+      $imageable = DB::table('imageables')->where('imageable_id', $id)->where('imageable_type', 'App\Movie')->first();
+      if($imageable == null)
+      {
+        return Image::noImage();
+      }
+      else
+      {
+        $image = DB::table('images')->where('id', $imageable->image_id)->first();
+        return "/images/".$image->file;
+      }
+    }
 }
-//
-// $numItems = count($arr);
-// $i = 0;
-// foreach($arr as $key=>$value) {
-//   if(++$i === $numItems) {
-//     echo "last index!";
-//   }
-// }

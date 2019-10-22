@@ -16,4 +16,11 @@ class Image extends Model
     {
       return $this->uploads . $image;
     }
+
+    public static function noImage()
+    {
+
+      return 'http://denrakaev.com/wp-content/uploads/2015/03/no-image.png';
+
+    }
 }

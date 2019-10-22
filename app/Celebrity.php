@@ -59,17 +59,31 @@ class Celebrity extends Model
   //Improving checkbox functionality when we editing a celebrity. This is a function for checking specific checkboxes thet are already saved in celebrity_movie table
   public function checkingCelebrity($movie_id, $celebrity_id, $profession_id)
   {
-      $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $movie_id)->where('celebrity_id', $celebrity_id)->where('profession_id', $profession_id)->get();
-      foreach($celebrity_movies as $celebrity_movie)
+    $celebrity_movies = DB::table('celebrity_movie')->where('movie_id', $movie_id)->where('celebrity_id', $celebrity_id)->where('profession_id', $profession_id)->get();
+    foreach($celebrity_movies as $celebrity_movie)
+    {
+      if($celebrity_movie == null)
       {
-        if($celebrity_movie == null)
-        {
-          return false;
-        }
-        else
-        {
-          return true;
-        }
+        return false;
       }
+      else
+      {
+        return true;
+      }
+    }
+  }
+  //Function for showing first image for every celebrity, if it exist
+  public function showCelebrityImage($id)
+  {
+    $imageable = DB::table('imageables')->where('imageable_id', $id)->where('imageable_type', 'App\Celebrity')->first();
+    if($imageable == null)
+    {
+      return Image::noImage();
+    }
+    else
+    {
+      $image = DB::table('images')->where('id', $imageable->image_id)->first();
+      return "/images/".$image->file;
+    }
   }
 }

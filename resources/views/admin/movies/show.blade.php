@@ -9,9 +9,11 @@
 @section('content')
   <div class="table-responsive">
     <table class="table table-bordered table-hover text-center">
-      <tr>
-        <th colspan="2" class="text-center"><img height="50" src="http://placehold.it/700x200" alt=""></th>
-      </tr>
+      <th colspan="2" class="text-center">
+        @foreach($movie->images as $image)
+          <img height="50" src="{{$image ? $image->file : App\Image::noImage()}}" alt="">
+        @endforeach
+      </th>
       <tr>
         <th>Id</th>
         <td>{{$movie->id}}</td>

@@ -23,7 +23,7 @@
         @forelse($celebrities as $celebrity)
           <tr>
             <td class="text-center">{{$celebrity->id}}</td>
-            <td class="text-center"><img height="50" src="http://placehold.it/700x200" alt=""></td>
+            <td class="text-center"><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
             <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
             <td class="text-center">{{$celebrity->professions($celebrity->id)}}</td>
             <td class="text-center">{{$celebrity->date_of_birth}}</td>
