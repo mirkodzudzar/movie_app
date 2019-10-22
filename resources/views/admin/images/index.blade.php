@@ -27,7 +27,7 @@
               <td class="text-center">{{$image->created_at}}</td>
               <td class="text-center">{{$image->updated_at}}</td>
               <td class="text-center">
-                {{ Form::open(['method' => 'DELETE', 'action' => ['AdminImagesController@destroy', $image->id]]) }}
+                {{ Form::open(['method' => 'DELETE', 'action' => ['AdminImagesController@destroyCelebrityImage', $image->id, $celebrity->id]]) }}
                   <div class="form-group">
                     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                   </div>
@@ -64,7 +64,7 @@
               <td class="text-center">{{$image->created_at}}</td>
               <td class="text-center">{{$image->updated_at}}</td>
               <td class="text-center">
-                {{ Form::open(['method' => 'DELETE', 'action' => ['AdminImagesController@destroy', $image->id]]) }}
+                {{ Form::open(['method' => 'DELETE', 'action' => ['AdminImagesController@destroyMovieImage', $image->id, $movie->id]]) }}
                   <div class="form-group">
                     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                   </div>

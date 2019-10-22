@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin'], function(){
     //Images controller
     Route::get('images', ['as' => 'admin.images.index' , 'uses' => 'AdminImagesController@index']);
     Route::post('images', ['as' => 'admin.images.index' , 'uses' => 'AdminImagesController@store']);
-    Route::delete('images/{image}', 'AdminImagesController@destroy');
+    Route::delete('images/celebrities/{id}/{celebrity_id}', 'AdminImagesController@destroyCelebrityImage');
+    Route::delete('images/movies/{id}/{movie_id}', 'AdminImagesController@destroyMovieImage');
 
 });
