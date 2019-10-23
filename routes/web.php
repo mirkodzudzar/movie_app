@@ -94,4 +94,6 @@ Route::group(['prefix' => 'admin'], function(){
     Route::delete('images/celebrities/{id}/{celebrity_id}', 'AdminImagesController@destroyCelebrityImage');
     Route::delete('images/movies/{id}/{movie_id}', 'AdminImagesController@destroyMovieImage');
 
+    Route::get('news', ['as' => 'admin.news.index' , 'uses' => 'AdminNewsController@index']);
+
 });

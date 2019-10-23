@@ -58,4 +58,9 @@ class User extends Authenticatable
       ->withPivot('like', 'like')
       ->withTimestamps();
     }
+
+    public function news()
+    {
+      return $this->hasMany('App\News');
+    }
 }

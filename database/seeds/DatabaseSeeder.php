@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('users')->truncate();
+        DB::table('news')->truncate();
         DB::table('roles')->truncate();
         DB::table('movies')->truncate();
         DB::table('genres')->truncate();
@@ -25,7 +26,9 @@ class DatabaseSeeder extends Seeder
         DB::table('professions')->truncate();
 
 
-        factory(App\User::class, 10)->create();
+        factory(App\User::class, 10)->create()->each(function($user) {
+          $user->news()->save(factory(App\News::class)->make());
+        });
         factory(App\Role::class, 3)->create();
         // factory(App\Photo::class, 1)->create();
         factory(App\Movie::class, 10)->create();

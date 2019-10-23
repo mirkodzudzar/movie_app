@@ -28,6 +28,14 @@ $factory->define(App\User::class, function(Faker $faker) {
     ];
 });
 
+$factory->define(App\News::class, function(Faker $faker){
+  return [
+    'title' => $faker->sentence(1, 11),
+    'content' => $faker->paragraphs(rand(10, 15), true),
+    'photo_id' => null,
+  ];
+});
+
 $factory->define(App\Role::class, function(Faker $faker){
   return [
     'name' => $faker->randomElement(['administrator', 'subscriber', 'author'])
