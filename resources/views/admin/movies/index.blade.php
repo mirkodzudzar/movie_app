@@ -21,18 +21,21 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td colspan="3">The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Image</td>
+        <td>Movie name</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $movie)
         <tr>
-          <td class="text-center">{{$movie->id}}</td>
-          <td class="text-center"><img height="50" src="{{$movie->showMovieImage($movie->id)}}" alt=""></td>
+          <td>{{$movie->id}}</td>
+          <td><img height="50" src="{{$movie->showMovieImage($movie->id)}}" alt=""></td>
           <td><a href="{{route('admin.movies.show', $movie->id)}}">{{$movie->name}}</a></td>
         </tr>
       @endforeach
@@ -46,9 +49,9 @@
     </div>
   @endif
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
       <th>Id</th>
       <th colspan="2">Like/Dislike</th>
       <th>Image</th>
@@ -65,17 +68,17 @@
     <tbody>
       @forelse($movies as $movie)
         <tr>
-          <td class="text-center">{{$movie->id}}</td>
-          <td class="text-center">{{$movie->likes($movie->id)}}</td>
-          <td class="text-center">{{$movie->dislikes($movie->id)}}</td>
+          <td>{{$movie->id}}</td>
+          <td>{{$movie->likes($movie->id)}}</td>
+          <td>{{$movie->dislikes($movie->id)}}</td>
           <td><img height="50" src="{{$movie->showMovieImage($movie->id)}}" alt=""></td>
-          <td class="text-center"><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
-          <td class="text-center">{{$movie->time_duration}}</td>
-          <td class="text-center">{{$movie->release_date}}</td>
+          <td><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
+          <td>{{$movie->time_duration}}</td>
+          <td>{{$movie->release_date}}</td>
           @foreach($professions as $profession)
-            <td class="text-center">{{$movie->professions($movie->id, $profession->id)}}</td>
+            <td>{{$movie->professions($movie->id, $profession->id)}}</td>
           @endforeach
-          <td class="text-center">
+          <td>
             <?php
               $numItems = count($movie->genres()->get());
               $i = 0;
@@ -91,8 +94,8 @@
           @foreach($professions as $profession)
             <td><a href="{{ route('admin.professions.edit_profession', [$profession->id, $movie->id]) }}" class="btn btn-primary">{{$profession->name}}</a></td>
           @endforeach
-          <td class="text-center"><a href="{{ route('admin.movies.edit', $movie->id)}}" class="btn btn-success">Edit</a></td>
-          <td class="text-center">
+          <td><a href="{{ route('admin.movies.edit', $movie->id)}}" class="btn btn-success">Edit</a></td>
+          <td>
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminMoviesController@destroy', $movie->id]]) }}
               <div class="form-group">
                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -102,7 +105,7 @@
         </tr>
       @empty
         <tr>
-          <th colspan='11' class="text-center">No movies found.</th>
+          <th colspan='11'>No movies found.</th>
         </tr>
       @endforelse
     </tbody>

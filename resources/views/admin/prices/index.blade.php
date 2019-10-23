@@ -21,21 +21,25 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td colspan="2">The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Movie name</td>
+        <td>Price</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $movie)
         <tr>
+          <td>{{$movie->id}}</td>
           <td><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
           @if($movie->price)
-            <td class="text-center bg-success"><a href="{{ route('admin.prices.edit', $movie->id) }}">{{$movie->price['value']}} $</a></td>
+            <td class="bg-success"><a href="{{ route('admin.prices.edit', $movie->id) }}">{{$movie->price['value']}} $</a></td>
           @else
-            <td class="text-center bg-danger"><a href="{{ route('admin.prices.edit', $movie->id) }}">unaveilable</a></td>
+            <td class="bg-danger"><a href="{{ route('admin.prices.edit', $movie->id) }}">unaveilable</a></td>
           @endif
         </tr>
       @endforeach
@@ -49,9 +53,9 @@
     </div>
   @endif
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
       <th>Id</th>
       <th>Image</th>
       <th>Name</th>
@@ -66,15 +70,15 @@
     <tbody>
       @forelse($movies as $movie)
         <tr>
-          <td class="text-center">{{$movie->id}}</td>
-          <td><img height="50" src="http://placehold.it/700x200" alt=""></td>
-          <td class="text-center"><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
-          <td class="text-center">{{$movie->time_duration}}</td>
-          <td class="text-center">{{$movie->release_date}}</td>
+          <td>{{$movie->id}}</td>
+          <td><img height="50" src="{{$movie->showMovieImage($movie->id)}}" alt=""></td>
+          <td><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
+          <td>{{$movie->time_duration}}</td>
+          <td>{{$movie->release_date}}</td>
           @foreach($professions as $profession)
-            <td class="text-center">{{$movie->professions($movie->id, $profession->id)}}</td>
+            <td>{{$movie->professions($movie->id, $profession->id)}}</td>
           @endforeach
-          <td class="text-center">
+          <td>
             <?php
               $counter = 1;
               $genre_count = count($movie->genres()->get());
@@ -90,14 +94,14 @@
           </td>
 
             @if($movie->price)
-              <td class="text-center bg-success"><a href="{{ route('admin.prices.edit', $movie->id) }}">{{$movie->price['value']}} $</a></td>
+              <td class="bg-success"><a href="{{ route('admin.prices.edit', $movie->id) }}">{{$movie->price['value']}} $</a></td>
             @else
-              <td class="text-center bg-danger"><a href="{{ route('admin.prices.edit', $movie->id) }}">unaveilable</a></td>
+              <td class="bg-danger"><a href="{{ route('admin.prices.edit', $movie->id) }}">unaveilable</a></td>
             @endif
         </tr>
       @empty
         <tr>
-          <th colspan='11' class="text-center">No movies found.</th>
+          <th colspan='11'>No movies found.</th>
         </tr>
       @endforelse
     </tbody>

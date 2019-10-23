@@ -21,18 +21,21 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td colspan="3">The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Image</td>
+        <td>Full name (first/last)</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $user)
         <tr>
-          <td class="text-center">{{$user->id}}</td>
-          <td class="text-center"><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></td>
+          <td>{{$user->id}}</td>
+          <td><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></td>
           <td><a href="{{ route('admin.users.show', $user->id) }}">{{$user->full_name}}</a></td>
         </tr>
       @endforeach
@@ -46,9 +49,9 @@
     </div>
   @endif
 </div>
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-      <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
         <th>Id</th>
         <th>Image</th>
         <th>Name (First/Last)</th>
@@ -63,18 +66,18 @@
       <tbody>
         @forelse($users as $user)
           <tr>
-            <td class="text-center">{{$user->id}}</td>
-            <td class="text-center"><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></td>
+            <td>{{$user->id}}</td>
+            <td><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></td>
             <td><a href="{{ route('admin.users.show', $user->id) }}">{{$user->full_name}}</a></td>
             <td>{{$user->username}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->date_of_birth}}</td>
             <td>{{$user->state_of_birth}}</td>
             <td>{{$user->role['name']}}</td>
-            <td class="text-center">{{date('Y-m-d', strtotime($user->created_at))}}</td>
-            <td class="text-center">{{date('Y-m-d', strtotime($user->updated_at))}}</td>
-            <td class="text-center"><a href="{{ route('admin.users.edit', $user->id )}}" class="btn btn-success">Edit</a></td>
-            <td class="text-center">
+            <td>{{date('Y-m-d', strtotime($user->created_at))}}</td>
+            <td>{{date('Y-m-d', strtotime($user->updated_at))}}</td>
+            <td><a href="{{ route('admin.users.edit', $user->id )}}" class="btn btn-success">Edit</a></td>
+            <td>
               {{ Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id]]) }}
                 <div class="form-group">
                   {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -84,7 +87,7 @@
           </tr>
         @empty
           <tr>
-            <th colspan='11' class="text-center">No users found.</th>
+            <th colspan='11'>No users found.</th>
           </tr>
         @endforelse
       </tbody>

@@ -7,10 +7,10 @@
 @section('description', 'User - '.$user->full_name)
 
 @section('content')
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover text-center">
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover">
       <tr>
-        <th colspan="2" class="text-center"><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></th>
+        <th colspan="2"><img height="50" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt=""></th>
       </tr>
       <tr>
         <th>Id</th>
@@ -55,7 +55,7 @@
       </tr>
       <tr>
         <!-- delete styles later -->
-        <th rowspan="2" style="vertical-align : middle; text-align:center;">Edit/Delete actions</th>
+        <th rowspan="2">Edit/Delete actions</th>
         <td>
           <a href="{{ route('admin.users.edit', $user->id )}}" class="btn btn-success">Edit</a>
           {{ Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id]]) }}

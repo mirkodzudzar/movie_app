@@ -21,16 +21,19 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td colspan="2">The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Role name</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $role)
         <tr>
+          <td>{{$role->id}}</td>
           <td><a href="{{ route('admin.roles.edit', $role->id) }}">{{$role->name}}</a></td>
         </tr>
       @endforeach
@@ -44,9 +47,9 @@
     </div>
   @endif
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
       <th>Id</th>
       <th>Name</th>
       <th>Number of users</th>
@@ -56,13 +59,13 @@
     <tbody>
       @forelse($roles as $role)
         <tr>
-          <td class="text-center">{{$role->id}}</td>
-          <td class="text-center">{{$role->name}}</td>
-          <td class="text-center">{{$role->userByRoleCount($role->id)}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($role->created_at))}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($role->updated_at))}}</td>
-          <td class="text-center"><a href="{{ route('admin.roles.edit', $role->id)}}" class="btn btn-success">Edit</a></td>
-          <td class="text-center">
+          <td>{{$role->id}}</td>
+          <td>{{$role->name}}</td>
+          <td>{{$role->userByRoleCount($role->id)}}</td>
+          <td>{{date('Y-m-d', strtotime($role->created_at))}}</td>
+          <td>{{date('Y-m-d', strtotime($role->updated_at))}}</td>
+          <td><a href="{{ route('admin.roles.edit', $role->id)}}" class="btn btn-success">Edit</a></td>
+          <td>
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminRolesController@destroy', $role->id]]) }}
               <div class="form-group">
                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -72,7 +75,7 @@
         </tr>
       @empty
         <tr>
-          <th colspan='11' class="text-center">No roles found.</th>
+          <th colspan='11'>No roles found.</th>
         </tr>
       @endforelse
     </tbody>

@@ -21,16 +21,19 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td>The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Name</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $genre)
         <tr>
+          <td>{{$genre->id}}</td>
           <td><a href="{{route('admin.genres.edit', $genre->id)}}">{{$genre->name}}</a></td>
         </tr>
       @endforeach
@@ -44,9 +47,9 @@
     </div>
   @endif
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
       <th>Id</th>
       <th>Name</th>
       <th>Number of movies</th>
@@ -56,13 +59,13 @@
     <tbody>
       @forelse($genres as $genre)
         <tr>
-          <td class="text-center">{{$genre->id}}</td>
-          <td class="text-center">{{$genre->name}}</td>
-          <td class="text-center">{{$genre->movieByGenreCount($genre->id)}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($genre->created_at))}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($genre->updated_at))}}</td>
-          <td class="text-center"><a href="{{ route('admin.genres.edit', $genre->id)}}" class="btn btn-success">Edit</a></td>
-          <td class="text-center">
+          <td>{{$genre->id}}</td>
+          <td>{{$genre->name}}</td>
+          <td>{{$genre->movieByGenreCount($genre->id)}}</td>
+          <td>{{date('Y-m-d', strtotime($genre->created_at))}}</td>
+          <td>{{date('Y-m-d', strtotime($genre->updated_at))}}</td>
+          <td><a href="{{ route('admin.genres.edit', $genre->id)}}" class="btn btn-success">Edit</a></td>
+          <td>
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminGenresController@destroy', $genre->id]]) }}
               <div class="form-group">
                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -72,7 +75,7 @@
         </tr>
       @empty
         <tr>
-          <th colspan='11' class="text-center">No genres found.</th>
+          <th colspan='11'>No genres found.</th>
         </tr>
       @endforelse
     </tbody>

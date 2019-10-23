@@ -21,18 +21,21 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td colspan="3">The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Image</td>
+        <td>Full name (first/last)</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $celebrity)
         <tr>
-          <td class="text-center">{{$celebrity->id}}</td>
-          <td class="text-center"><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
+          <td>{{$celebrity->id}}</td>
+          <td><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
           <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
         </tr>
       @endforeach
@@ -46,9 +49,9 @@
     </div>
   @endif
 </div>
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-      <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
         <th>Id</th>
         <th>Image</th>
         <th>Name (First/Last)</th>
@@ -61,16 +64,16 @@
       <tbody>
         @forelse($celebrities as $celebrity)
           <tr>
-            <td class="text-center">{{$celebrity->id}}</td>
-            <td class="text-center"><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
+            <td>{{$celebrity->id}}</td>
+            <td><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
             <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
-            <td class="text-center">{{$celebrity->professions($celebrity->id)}}</td>
-            <td class="text-center">{{$celebrity->date_of_birth}}</td>
-            <td class="text-center">{{$celebrity->state_of_birth}}</td>
-            <td class="text-center">{{date('Y-m-d', strtotime($celebrity->created_at))}}</td>
-            <td class="text-center">{{date('Y-m-d', strtotime($celebrity->updated_at))}}</td>
-            <td class="text-center"><a href="{{ route('admin.celebrities.edit', $celebrity->id )}}" class="btn btn-success">Edit</a></td>
-            <td class="text-center">
+            <td>{{$celebrity->professions($celebrity->id)}}</td>
+            <td>{{$celebrity->date_of_birth}}</td>
+            <td>{{$celebrity->state_of_birth}}</td>
+            <td>{{date('Y-m-d', strtotime($celebrity->created_at))}}</td>
+            <td>{{date('Y-m-d', strtotime($celebrity->updated_at))}}</td>
+            <td><a href="{{ route('admin.celebrities.edit', $celebrity->id )}}" class="btn btn-success">Edit</a></td>
+            <td>
               {{ Form::open(['method' => 'DELETE', 'action' => ['AdminCelebritiesController@destroy', $celebrity->id]]) }}
                 <div class="form-group">
                   {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -80,7 +83,7 @@
           </tr>
         @empty
           <tr>
-            <th colspan='11' class="text-center">No celebrities found.</th>
+            <th colspan='11'>No celebrities found.</th>
           </tr>
         @endforelse
       </tbody>

@@ -7,10 +7,10 @@
 @section('description', 'Images')
 
 @section('content')
-  <div class="table-responsive">
-    {{ Form::label('celebrity_image', 'Images of celebrities', ['id' => 'celebrities']) }}
-    <table class="table table-bordered table-hover">
-      <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  {{ Form::label('celebrity_image', 'Images of celebrities', ['id' => 'celebrities']) }}
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
         <th >Id</th>
         <th>Image</th>
         <th>Celebrity</th>
@@ -21,12 +21,12 @@
         @forelse($celebrities as $celebrity)
           @foreach($celebrity->images as $image)
             <tr>
-              <td class="text-center">{{$image->id}}</td>
-              <td class="text-center"><img height="50" src="{{$image->file}}" alt=""></td>
-              <td class="text-center">{{$celebrity->full_name}}</td>
-              <td class="text-center">{{$image->created_at}}</td>
-              <td class="text-center">{{$image->updated_at}}</td>
-              <td class="text-center">
+              <td>{{$image->id}}</td>
+              <td><img height="50" src="{{$image->file}}" alt=""></td>
+              <td>{{$celebrity->full_name}}</td>
+              <td>{{$image->created_at}}</td>
+              <td>{{$image->updated_at}}</td>
+              <td>
                 {{ Form::open(['method' => 'DELETE', 'action' => ['AdminImagesController@destroyCelebrityImage', $image->id, $celebrity->id]]) }}
                   <div class="form-group">
                     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -37,17 +37,17 @@
           @endforeach
         @empty
           <tr>
-            <th colspan='11' class="text-center">No images for celebrities found.</th>
+            <th colspan='11'>No images for celebrities found.</th>
           </tr>
         @endforelse
       </tbody>
     </table>
   </div>
 
-  <div class="table-responsive">
+  <div class="card-body table-responsive p-0">
     {{ Form::label('movie_image', 'Images of movies', ['id' => 'movies']) }}
-    <table class="table table-bordered table-hover">
-      <thead class="text-center bg-success">
+    <table class="table table-hover text-center">
+      <thead class="bg-success">
         <th>Id</th>
         <th>Image</th>
         <th>Movie</th>
@@ -58,12 +58,12 @@
         @forelse($movies as $movie)
           @foreach($movie->images as $image)
             <tr>
-              <td class="text-center">{{$image->id}}</td>
-              <td class="text-center"><img height="50" src="{{$image->file}}" alt=""></td>
-              <td class="text-center">{{$movie->name}}</td>
-              <td class="text-center">{{$image->created_at}}</td>
-              <td class="text-center">{{$image->updated_at}}</td>
-              <td class="text-center">
+              <td>{{$image->id}}</td>
+              <td><img height="50" src="{{$image->file}}" alt=""></td>
+              <td>{{$movie->name}}</td>
+              <td>{{$image->created_at}}</td>
+              <td>{{$image->updated_at}}</td>
+              <td>
                 {{ Form::open(['method' => 'DELETE', 'action' => ['AdminImagesController@destroyMovieImage', $image->id, $movie->id]]) }}
                   <div class="form-group">
                     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -74,19 +74,20 @@
           @endforeach
         @empty
           <tr>
-            <th colspan='11' class="text-center">No images for movies found.</th>
+            <th colspan='11'>No images for movies found.</th>
           </tr>
         @endforelse
       </tbody>
     </table>
   </div>
   {{ Form::open(['method' => 'POST', 'action' => 'AdminImagesController@store', 'class' => 'col-md-12', 'files' => true]) }}
-    <div class="table-responsive" id="create_image">
-      <table class="table table-bordered table-hover">
-        <thead class="text-center">
-            <th class="bg-success">Create new image</th>
-            <th class="bg-success">Chose movie</th>
-            <th class="bg-success">Chose celebrity/celebrities</th>
+  <div class="card-body table-responsive p-0" id="create_image">
+    {{ Form::label('create_image', 'Create new image', ['id' => 'movies']) }}
+    <table class="table table-hover">
+        <thead class="bg-success">
+          <th>Chose image</th>
+          <th>Chose movie</th>
+          <th>Chose celebrity/celebrities</th>
         </thead>
         <tbody>
           <tr>

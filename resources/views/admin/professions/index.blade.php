@@ -21,16 +21,19 @@
 
 @section('content')
 @if(isset($details))
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
+<div class="card-body table-responsive p-0">
+  <p class="bg-primary">The search results for your query <b> {{$query}} </b> are: </p>
+  <table class="table table-hover text-center">
     <thead class="bg-primary">
       <tr>
-        <td colspan="2">The search results for <b> {{$query}} </b> are: </td>
+        <td>Id</td>
+        <td>Profession name</td>
       </tr>
     </thead>
     <tbody>
       @foreach($details as $profession)
         <tr>
+          <td>{{$profession->id}}</td>
           <td><a href="{{ route('admin.professions.edit', $profession->id) }}">{{$profession->name}}</a></td>
         </tr>
       @endforeach
@@ -44,9 +47,9 @@
     </div>
   @endif
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead class="text-center bg-success">
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-center">
+    <thead class="bg-success">
       <th>Id</th>
       <th>Name</th>
       <th>Number of celebrities</th>
@@ -56,13 +59,13 @@
     <tbody>
       @forelse($professions as $profession)
         <tr>
-          <td class="text-center">{{$profession->id}}</td>
-          <td class="text-center">{{$profession->name}}</td>
-          <td class="text-center">{{$profession->numberOfCelebrities($profession->id)}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($profession->created_at))}}</td>
-          <td class="text-center">{{date('Y-m-d', strtotime($profession->updated_at))}}</td>
-          <td class="text-center"><a href="{{ route('admin.professions.edit', $profession->id)}}" class="btn btn-success">Edit</a></td>
-          <td class="text-center">
+          <td>{{$profession->id}}</td>
+          <td>{{$profession->name}}</td>
+          <td>{{$profession->numberOfCelebrities($profession->id)}}</td>
+          <td>{{date('Y-m-d', strtotime($profession->created_at))}}</td>
+          <td>{{date('Y-m-d', strtotime($profession->updated_at))}}</td>
+          <td><a href="{{ route('admin.professions.edit', $profession->id)}}" class="btn btn-success">Edit</a></td>
+          <td>
             {{ Form::open(['method' => 'DELETE', 'action' => ['AdminProfessionsController@destroy', $profession->id]]) }}
               <div class="form-group">
                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
@@ -72,7 +75,7 @@
         </tr>
       @empty
         <tr>
-          <th colspan='11' class="text-center">No professions found.</th>
+          <th colspan='11'>No professions found.</th>
         </tr>
       @endforelse
     </tbody>
