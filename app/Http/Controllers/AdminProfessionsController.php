@@ -15,6 +15,11 @@ use DB;
 
 class AdminProfessionsController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('administrator');
+  }
+
   public function index()
   {
     $professions = Profession::all()->sortBy('name');

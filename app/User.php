@@ -37,6 +37,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin()
+    {
+      if($this->role !== null)
+      {
+        if($this->role->name == "administrator")
+        {
+            return true;
+        }
+      }
+
+      return false;
+    }
+
     public function getFullNameAttribute($value)
     {
        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);

@@ -14,6 +14,11 @@ use DB;
 
 class AdminPricesController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('administrator');
+    }
+
     public function index()
     {
       //STILL NEED TO SORT MOVIES BY PRICE VALUE

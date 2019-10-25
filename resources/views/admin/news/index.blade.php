@@ -15,18 +15,17 @@
       <th>Title</th>
       <th>Content</th>
       <th>Author</th>
-      <th colspan="2">Edit/Delete actions</th>
+      <th>Delete action</th>
       <th colspan="2">Approve/Un-approve actions</th>
     </thead>
     <tbody>
-      @forelse($news as $news)
+      @forelse($news as $n)
         <tr>
-          <td>{{$news->id}}</td>
-          <td></td>
-          <td>{{$news->title}}</td>
-          <td>{{str_limit($news->content, $limit = 25, $end = '...')}}</td>
-          <td>{{$news->user->full_name}}</td>
-          <td><a href="" class="btn btn-success">Edit</a></td>
+          <td>{{$n->id}}</td>
+          <td><img height="50" src="{{$n->showNewsPhoto($n->id)}}" alt=""></td>
+          <td>{{$n->title}}</td>
+          <td>{{str_limit($n->content, $limit = 25, $end = '...')}}</td>
+          <td>{{$n->user->full_name}}</td>
           <td>Delete</td>
           <td>Approve</td>
           <td>Un-approve</td>

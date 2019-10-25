@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Input;
 
 class AdminGenresController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('administrator');
+    }
+
     public function index()
     {
       $genres = Genre::all()->sortBy('name');

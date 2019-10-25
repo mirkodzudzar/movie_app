@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Input;
 
 class AdminRolesController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('administrator');
+    }
+
     public function index()
     {
       $roles = Role::all()->sortBy('name');

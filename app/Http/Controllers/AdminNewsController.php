@@ -7,6 +7,11 @@ use App\News;
 
 class AdminNewsController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('administrator');
+    }
+
     public function index()
     {
       $news = News::all();

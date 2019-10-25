@@ -12,6 +12,11 @@ use DB;
 
 class AdminImagesController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('administrator');
+    }
+
     public function index()
     {
       //ADD FUNCTIONALITY FOR SHOWING ONLY CELEBRITIES THAT BELONGS TO CHOSEN MOVIE. SORT BY ID OF IMAGE

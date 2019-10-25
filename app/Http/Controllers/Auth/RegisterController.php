@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/news';
 
     /**
      * Create a new controller instance.
@@ -80,5 +80,7 @@ class RegisterController extends Controller
             'role_id' => null,
             'photo_id' => null,
         ]);
+
+        return $user;
     }
 }

@@ -29,6 +29,11 @@ class Photo extends Model
       return $this->hasOne('App\User');
     }
 
+    public function news()
+    {
+      return $this->hasOne('App\News');
+    }
+
     public static function noPhoto()
     {
 

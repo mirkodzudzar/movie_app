@@ -11,11 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
+
+//Controllers for front pages
+Route::get('news', ['as' => 'front.news.index' , 'uses' => 'NewsController@index']);
 
 //Prefix 'admin' adds a admin in fron of every route in this group
 Route::group(['prefix' => 'admin'], function(){
