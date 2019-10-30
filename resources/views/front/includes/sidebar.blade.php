@@ -4,7 +4,7 @@
 </div> -->
 
 <div class="p-4">
-  <h4 class="font-italic">Movie genres</h4>
+  <h4 class="font-italic">See movies by genre</h4>
   <ol class="list-unstyled mb-0">
     @foreach($genres as $genre)
       <li><a href="#">{{$genre->name}}</a></li>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="p-4">
-  <h4 class="font-italic">The professions of celebrities</h4>
+  <h4 class="font-italic">See celebrities by profession</h4>
   <ol class="list-unstyled mb-0">
     @foreach($professions as $profession)
       <li><a href="#">{{$profession->name}}</a></li>

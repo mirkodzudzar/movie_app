@@ -18,7 +18,14 @@
 Auth::routes();
 
 //Controllers for front pages
+//News controller
 Route::get('news', ['as' => 'front.news.index' , 'uses' => 'NewsController@index']);
+Route::post('news', ['as' => 'front.news.index', 'uses' => 'NewsController@store']);
+Route::get('news/{news}', ['as' => 'front.news.show' , 'uses' => 'NewsController@show']);
+
+//Users controller
+Route::get('users/{user}/edit', ['as' => 'front.users.edit' , 'uses' => 'UsersController@edit']);
+Route::patch('users/{user}', 'UsersController@update');
 
 //Prefix 'admin' adds a admin in fron of every route in this group
 Route::group(['prefix' => 'admin'], function(){
@@ -60,7 +67,7 @@ Route::group(['prefix' => 'admin'], function(){
     //Roles controller
     Route::get('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@index']);
     Route::post('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@store']);
-    Route::get('roles/{role}', ['as' => 'admin.roles.edit' , 'uses' => 'AdminRolesController@edit']);
+    Route::get('roles/{role}/edit', ['as' => 'admin.roles.edit' , 'uses' => 'AdminRolesController@edit']);
     Route::patch('roles/{role}', 'AdminRolesController@update');
     Route::delete('roles/{role}', 'AdminRolesController@destroy');
     Route::post('/roles/search', 'AdminRolesController@index');
@@ -68,7 +75,7 @@ Route::group(['prefix' => 'admin'], function(){
     //Genres controller
     Route::get('genres', ['as' => 'admin.genres.index' , 'uses' => 'AdminGenresController@index']);
     Route::post('genres', ['as' => 'admin.genres.index' , 'uses' => 'AdminGenresController@store']);
-    Route::get('genres/{genre}', ['as' => 'admin.genres.edit' , 'uses' => 'AdminGenresController@edit']);
+    Route::get('genres/{genre}/edit', ['as' => 'admin.genres.edit' , 'uses' => 'AdminGenresController@edit']);
     Route::patch('genres/{genre}', 'AdminGenresController@update');
     Route::delete('genres/{genre}', 'AdminGenresController@destroy');
     Route::post('/genres/search', 'AdminGenresController@index');
@@ -76,7 +83,7 @@ Route::group(['prefix' => 'admin'], function(){
     //Professions controller
     Route::get('professions', ['as' => 'admin.professions.index' , 'uses' => 'AdminProfessionsController@index']);
     Route::post('professions', ['as' => 'admin.professions.index' , 'uses' => 'AdminProfessionsController@store']);
-    Route::get('professions/{profession}', ['as' => 'admin.professions.edit' , 'uses' => 'AdminProfessionsController@edit']);
+    Route::get('professions/{profession}/edit', ['as' => 'admin.professions.edit' , 'uses' => 'AdminProfessionsController@edit']);
     Route::patch('professions/{profession}', 'AdminProfessionsController@update');
     Route::delete('professions/{profession}', 'AdminProfessionsController@destroy');
     Route::get('professions/edit_profession/{id}/{movieId}', ['as' => 'admin.professions.edit_profession' , 'uses' => 'AdminProfessionsController@editProfession']);
@@ -86,7 +93,7 @@ Route::group(['prefix' => 'admin'], function(){
     //Prices controller
     Route::get('prices', ['as' => 'admin.prices.index' , 'uses' => 'AdminPricesController@index']);
     Route::post('prices', ['as' => 'admin.prices.create' , 'uses' => 'AdminPricesController@store']);
-    Route::get('prices/{price}', ['as' => 'admin.prices.edit' , 'uses' => 'AdminPricesController@edit']);
+    Route::get('prices/{price}/edit', ['as' => 'admin.prices.edit' , 'uses' => 'AdminPricesController@edit']);
     Route::patch('prices/{price}', 'AdminPricesController@update');
     Route::delete('prices/{price}', 'AdminPricesController@destroy');
     Route::post('/prices/search', 'AdminPricesController@index');
@@ -98,5 +105,6 @@ Route::group(['prefix' => 'admin'], function(){
     Route::delete('images/movies/{id}/{movie_id}', 'AdminImagesController@destroyMovieImage');
 
     Route::get('news', ['as' => 'admin.news.index' , 'uses' => 'AdminNewsController@index']);
+    Route::delete('news/{news}', 'AdminNewsController@destroy');
 
 });

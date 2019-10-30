@@ -107,4 +107,11 @@
   </div>
 
 
+<!-- Messages for news -->
+@elseif(Session::has('deleted_news'))
+  <div class="alert alert-success">
+    <p>{{session('deleted_news')}}</p>
+  </div>
+
+
 @endif

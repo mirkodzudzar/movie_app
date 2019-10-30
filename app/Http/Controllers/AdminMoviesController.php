@@ -16,6 +16,7 @@ class AdminMoviesController extends Controller
 {
     public function __construct()
     {
+      $this->middleware('auth');
       $this->middleware('administrator');
     }
 
@@ -57,7 +58,7 @@ class AdminMoviesController extends Controller
         //In this case, this method does not working because there is not a 'full_name' fild in movies table
         // $directors = Director::pluck('full_name', 'id')->all();
         $genres = Genre::all();
-        $profession = Profession::where('name', 'director')->first();
+        $profession = Profession::where('name', 'director')->orWhere('id', 1)->first();
         $celebrities = Celebrity::all()->sortBy('last_name');//paginate(5)
 
         return view('admin.movies.create', compact('genres', 'profession', 'celebrities'));
@@ -71,7 +72,7 @@ class AdminMoviesController extends Controller
      */
     public function store(MovieCreateRequest $request)
     {
-      return $input = $request->all();
+      $input = $request->all();
       $movie = Movie::create($input);
       //Attaching genres to the created movie, inserting values in genre_movie table
       $movie->genres()->attach($request->genre);
@@ -105,7 +106,7 @@ class AdminMoviesController extends Controller
     {
         $movie = Movie::findOrFail($id);
         $genres = Genre::all();
-        $profession = Profession::where('name', 'director')->first();
+        $profession = Profession::where('name', 'director')->orWhere('id', 1)->first();
         $celebrities = Celebrity::all();
 
         // $celebrities = Celebrity::all()->pluck('full_name', 'id');
@@ -139,11 +140,11 @@ class AdminMoviesController extends Controller
 
       if($request->celebrity == null)
       {
-        $movie->celebrities()->detach();
+        $movie->celebrities()->wherePivot('movie_id', $id)->detach();
       }
       else
       {
-        $movie->celebrities()->detach();
+        $movie->celebrities()->wherePivot('movie_id', $id)->detach();
         //Attaching celebrities to the created movie, inserting values in celebrity_movie table, also with specific profession
         $movie->celebrities()->attach($request->celebrity, ['profession_id' => $request->profession_id]);
       }

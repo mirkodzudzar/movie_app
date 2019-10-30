@@ -162,7 +162,10 @@
             </p>
           </a>
         </li>
-        <li class="nav-header">LABELS</li>
+        <li class="nav-header">Profile</li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.users.edit', Auth::user()->id) }}"><i class="nav-icon far fa-circle text-success"></i> Edit profile</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}"
              onclick="event.preventDefault();

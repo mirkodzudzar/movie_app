@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Administrator
+class Author
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Administrator
     {
       if(Auth::check())
       {
-        if(Auth::user()->isAdmin())
+        if(Auth::user()->isAuthor())
         {
             return $next($request);
         }

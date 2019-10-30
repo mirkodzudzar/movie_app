@@ -16,7 +16,6 @@
       <th>Content</th>
       <th>Author</th>
       <th>Delete action</th>
-      <th colspan="2">Approve/Un-approve actions</th>
     </thead>
     <tbody>
       @forelse($news as $n)
@@ -26,9 +25,13 @@
           <td>{{$n->title}}</td>
           <td>{{str_limit($n->content, $limit = 25, $end = '...')}}</td>
           <td>{{$n->user->full_name}}</td>
-          <td>Delete</td>
-          <td>Approve</td>
-          <td>Un-approve</td>
+          <td>
+            {{ Form::open(['method' => 'DELETE', 'action' => ['AdminNewsController@destroy', $n->id]]) }}
+              <div class="form-group">
+                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+              </div>
+            {{ Form::close() }}
+          </td>
         </tr>
       @empty
         <tr>

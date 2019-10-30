@@ -50,6 +50,19 @@ class User extends Authenticatable
       return false;
     }
 
+    public function isAuthor()
+    {
+      if($this->role !== null)
+      {
+        if($this->role->name == "author")
+        {
+            return true;
+        }
+      }
+
+      return false;
+    }
+
     public function getFullNameAttribute($value)
     {
        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);

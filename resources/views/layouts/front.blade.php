@@ -5,6 +5,10 @@
 
     @include('front.includes.navbar')
 
+    @include('front.includes.front_flash_messages')
+
+    @include('front.includes.front_errors')
+
     @yield('top')
 
   </div>

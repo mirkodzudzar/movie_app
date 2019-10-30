@@ -32,7 +32,7 @@ class UserCreateRequest extends FormRequest
           'email' => 'required|string|email|max:255|unique:users',
           'password' => 'required|string|min:8|confirmed',
           'role_id' => 'required|integer',
-          'photo_id' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+          'photo_id' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

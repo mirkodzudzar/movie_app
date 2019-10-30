@@ -1,14 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.front')
 
-@section('title', 'Movie Application - Edit user '.$user->full_name)
-
-@section('heading', 'Edit user - '.$user->full_name)
-
-@section('description', 'Edit user - '.$user->full_name)
+@section('title', 'Movie Application - '.$user->full_name)
 
 @section('content')
-
-  {{ Form::model($user, ['method' => 'PATCH', 'action' => ['AdminUsersController@update', $user->id], 'class' => 'col-md-12', 'files' => true]) }}
+  {{ Form::model($user, ['method' => 'PATCH', 'action' => ['UsersController@update', $user->id], 'class' => 'col-md-12', 'files' => true]) }}
     <div class="form-group">
       {{ Form::label('first_name', 'First name') }}
       {{ Form::text('first_name', null, ['class' => 'form-control']) }}
@@ -33,10 +28,6 @@
       {{ Form::label('email', 'Email') }}
       {{ Form::email('email', null, ['class' => 'form-control']) }}
     </div>
-    <div class="form-group">
-      {{ Form::label('role_id', 'Role') }}
-      {{ Form::select('role_id', $roles, null, ['class' => 'form-control']) }}
-    </div>
     <img height="150" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt="">
     <div class="form-group">
       {{ Form::label('photo_id', 'Photo:') }}
@@ -51,14 +42,7 @@
       {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm', 'autocomplete' => 'new-password']) }}
     </div>
     <div class="form-group">
-      {{ Form::submit('Edit user', ['class' => 'btn btn-primary']) }}
+      {{ Form::submit('Edit profile', ['class' => 'btn btn-primary']) }}
     </div>
   {{ Form::close() }}
-
-  {{ Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id], 'class' => 'col-md-12']) }}
-    <div class="form-group">
-      {{ Form::submit('Delete user', ['class' => 'btn btn-danger']) }}
-    </div>
-  {{ Form::close() }}
-
 @endsection
