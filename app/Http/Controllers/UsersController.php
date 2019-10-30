@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Genre;
 use App\Profession;
+use App\News;
 use View;
 
 class UsersController extends Controller
@@ -16,6 +17,14 @@ class UsersController extends Controller
     View::share('genres', $genres);
     $professions = Profession::all();
     View::share('professions', $professions);
+  }
+
+  public function show($id)
+  {
+      $user = User::findOrFail($id);
+      $news = News::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);;
+
+      return view('front.users.show', compact('user', 'news'));
   }
 
   public function edit($id)

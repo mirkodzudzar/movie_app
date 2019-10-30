@@ -24,8 +24,16 @@ Route::post('news', ['as' => 'front.news.index', 'uses' => 'NewsController@store
 Route::get('news/{news}', ['as' => 'front.news.show' , 'uses' => 'NewsController@show']);
 
 //Users controller
+Route::get('users/{user}', ['as' => 'front.users.show' , 'uses' => 'UsersController@show']);
 Route::get('users/{user}/edit', ['as' => 'front.users.edit' , 'uses' => 'UsersController@edit']);
 Route::patch('users/{user}', 'UsersController@update');
+
+//Movies controller
+Route::get('movies', ['as' => 'front.movies.index' , 'uses' => 'MoviesController@index']);
+Route::get('movies/{movie}', ['as' => 'front.movies.show' , 'uses' => 'MoviesController@show']);
+
+//Genres controller
+Route::get('genres/{genre}', ['as' => 'front.genres.show' , 'uses' => 'GenresController@show']);
 
 //Prefix 'admin' adds a admin in fron of every route in this group
 Route::group(['prefix' => 'admin'], function(){

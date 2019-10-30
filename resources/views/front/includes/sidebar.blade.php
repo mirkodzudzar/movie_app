@@ -7,7 +7,7 @@
   <h4 class="font-italic">See movies by genre</h4>
   <ol class="list-unstyled mb-0">
     @foreach($genres as $genre)
-      <li><a href="#">{{$genre->name}}</a></li>
+      <li><a href="{{ route('front.genres.show', $genre->id) }}">{{$genre->name}}</a></li>
     @endforeach
   </ol>
 </div>

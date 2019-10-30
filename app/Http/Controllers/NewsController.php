@@ -35,7 +35,7 @@ class NewsController extends Controller
       $movie_user = DB::table('movie_user')->where('like', 1)->orderBy('like', 'desc')->first();
       $top_movie = Movie::where('id', $movie_user->movie_id)->first();
 
-      return view('front.news.index', compact('news', 'latest_news', 'latest_movie'));
+      return view('front.news.index', compact('news', 'latest_news', 'latest_movie', 'top_movie'));
     }
 
     public function store(NewsCreateRequest $request)
