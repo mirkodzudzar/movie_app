@@ -48,7 +48,7 @@
       @endif
     @endauth
     <a class="p-1 text-muted" href="{{ route('front.movies.index') }}">Movies</a>
-    <a class="p-1 text-muted" href="#">Celebrities</a>
+    <a class="p-1 text-muted" href="{{ route('front.celebrities.index') }}">Celebrities</a>
     <!-- <a class="p-2 text-muted" href="#">Culture</a>
     <a class="p-2 text-muted" href="#">Business</a>
     <a class="p-2 text-muted" href="#">Politics</a>

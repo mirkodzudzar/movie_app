@@ -22,8 +22,6 @@ class NewsController extends Controller
       $this->middleware('author', ['only' => 'store']);
       $genres = Genre::all();
       View::share('genres', $genres);
-      $professions = Profession::all();
-      View::share('professions', $professions);
     }
 
     public function index()

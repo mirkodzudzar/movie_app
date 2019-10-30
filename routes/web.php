@@ -35,6 +35,10 @@ Route::get('movies/{movie}', ['as' => 'front.movies.show' , 'uses' => 'MoviesCon
 //Genres controller
 Route::get('genres/{genre}', ['as' => 'front.genres.show' , 'uses' => 'GenresController@show']);
 
+//Celebrities controller
+Route::get('celebrities', ['as' => 'front.celebrities.index' , 'uses' => 'CelebritiesController@index']);
+Route::get('celebrities/{celebrity}', ['as' => 'front.celebrities.show' , 'uses' => 'CelebritiesController@show']);
+
 //Prefix 'admin' adds a admin in fron of every route in this group
 Route::group(['prefix' => 'admin'], function(){
     //Users controller

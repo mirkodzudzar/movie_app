@@ -14,8 +14,6 @@ class MoviesController extends Controller
   {
     $genres = Genre::all();
     View::share('genres', $genres);
-    $professions = Profession::all();
-    View::share('professions', $professions);
   }
 
   public function index()
@@ -27,8 +25,9 @@ class MoviesController extends Controller
 
   public function show($id)
   {
+    $professions = Profession::all();
     $movie = Movie::findOrFail($id);
 
-    return view('front.movies.show', compact('movie'));
+    return view('front.movies.show', compact('movie', 'professions'));
   }
 }

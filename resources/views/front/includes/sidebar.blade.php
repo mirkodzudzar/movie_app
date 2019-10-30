@@ -11,12 +11,3 @@
     @endforeach
   </ol>
 </div>
-
-<div class="p-4">
-  <h4 class="font-italic">See celebrities by profession</h4>
-  <ol class="list-unstyled mb-0">
-    @foreach($professions as $profession)
-      <li><a href="#">{{$profession->name}}</a></li>
-    @endforeach
-  </ol>
-</div>

@@ -50,7 +50,7 @@
 
 @forelse($news as $n)
   <div class="blog-post">
-    <h2 class="blog-post-title">{{$n->title}}</h2>
+    <h2 class="blog-post-title"><a href="{{ route('front.news.show', $n->id) }}">{{$n->title}}</a></h2>
     <p class="blog-post-meta">{{$n->created_at->diffForHumans()}} by <a href="{{ route('front.users.show', $n->user_id) }}">{{$n->user->full_name}}</a></p>
     <img height="150" src="{{$n->showNewsPhoto($n->id)}}" alt="">
     <p>{{str_limit($n->content, $limit = 250)}}</p>

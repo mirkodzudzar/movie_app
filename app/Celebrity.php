@@ -56,6 +56,40 @@ class Celebrity extends Model
       }
   }
 
+  public function celebritiesMovies($id, $profession_id)
+  {
+      // $movie = DB::table('movies')->where('id', $id)->first();
+      $profession = DB::table('professions')->where('id', $profession_id)->first();
+      // if($profession === null)
+      // {
+      //   echo "<i>profession unavailable</i>";
+      // }
+      // else
+      // {
+      $celebrity_movies = DB::table('celebrity_movie')->where('celebrity_id', $id)->where('profession_id', $profession->id)->get();
+
+      $numItems = count($celebrity_movies);
+      $i = 0;
+      foreach($celebrity_movies as $celebrity_movie)
+      {
+        $movies = DB::table('movies')->where('id', $celebrity_movie->movie_id)->get();
+        foreach($movies as $movie)
+        {
+          if(++$i === $numItems)
+          {
+            //LIMIT A NUMBER OF CELEBRITIES PER PROFESSION TO ONE PRESON
+            // echo Str::words($celebrity->first_name.' '.$celebrity->last_name, $words = 1, $end = '...');
+            echo '<a href="'.route('front.movies.show', $movie->id).'">'.$movie->name.'</a>';
+          }
+          else
+          {
+            echo '<a href="'.route('front.movies.show', $movie->id).'">'.$movie->name.'</a>, ';
+          }
+        // }
+        }
+      }
+  }
+
   //Improving checkbox functionality when we editing a celebrity. This is a function for checking specific checkboxes thet are already saved in celebrity_movie table
   public function checkingCelebrity($movie_id, $celebrity_id, $profession_id)
   {

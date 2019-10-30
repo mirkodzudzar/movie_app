@@ -14,8 +14,6 @@ class GenresController extends Controller
   {
     $genres = Genre::all();
     View::share('genres', $genres);
-    $professions = Profession::all();
-    View::share('professions', $professions);
   }
 
   public function show($id)
