@@ -16,9 +16,9 @@
     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-4 d-flex flex-column position-static">
         <strong class="d-inline-block mb-2 text-primary">Movie #1</strong>
-        <h3 class="mb-0">{{$top_movie->name}}</h3>
-        <div class="mb-1 text-muted">{{$top_movie->release_date}}</div>
-        <p class="card-text mb-auto">{{str_limit($latest_movie->description, $limit = 25)}}</p>
+        <h3 class="mb-0">movie_name</h3>
+        <div class="mb-1 text-muted">release_date</div>
+        <p class="card-text mb-auto">content</p>
         <a href="#" class="stretched-link">Continue reading</a>
       </div>
       <div class="col-auto d-none d-lg-block">

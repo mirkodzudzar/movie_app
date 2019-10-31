@@ -59,7 +59,7 @@
       <th>Time duration</th>
       <th>Release date</th>
       @foreach($professions as $profession)
-        <th>{{$profession->name}}(s)</th>
+        <th>{{ucfirst($profession->name)}}</th>
       @endforeach
       <th>Genre</th>
       <th colspan="{{$professions->count()}}">Edit professions</th>
@@ -76,7 +76,7 @@
           <td>{{$movie->time_duration}}</td>
           <td>{{$movie->release_date}}</td>
           @foreach($professions as $profession)
-            <td>{{$movie->professions($movie->id, $profession->id)}}</td>
+            <td>{{$movie->oneCelebrityPerProff($movie->id, $profession->id)}}</td>
           @endforeach
           <td>
             <?php
@@ -92,7 +92,7 @@
             @endforeach
           </td>
           @foreach($professions as $profession)
-            <td><a href="{{ route('admin.professions.edit_profession', [$profession->id, $movie->id]) }}" class="btn btn-primary">{{$profession->name}}</a></td>
+            <td><a href="{{ route('admin.professions.edit_profession', [$profession->id, $movie->id]) }}" class="btn btn-primary">{{ucfirst($profession->name)}}</a></td>
           @endforeach
           <td><a href="{{ route('admin.movies.edit', $movie->id)}}" class="btn btn-success">Edit</a></td>
           <td>

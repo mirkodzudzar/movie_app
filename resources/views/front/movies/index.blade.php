@@ -10,8 +10,13 @@
 @forelse($movies as $movie)
   <div class="blog-post">
     <h2 class="blog-post-title"><a href="{{ route('front.movies.show', $movie->id) }}">{{$movie->name}}</a></h2>
-    <i class="far fa-thumbs-up">{{$movie->likes($movie->id)}}</i>
-    <i class="far fa-thumbs-down">{{$movie->dislikes($movie->id)}}</i>
+    @guest
+      <i class="far fa-thumbs-up">{{$movie->likes($movie->id)}}</i>
+      <i class="far fa-thumbs-down">{{$movie->dislikes($movie->id)}}</i>
+    @else
+      <a href="{{ route('front.movies.like', $movie->id) }}">{{$movie->thumbsUp($movie->id, Auth::user()->id)}}</a>{{$movie->likes($movie->id)}}
+      <a href="{{ route('front.movies.dislike', $movie->id) }}">{{$movie->thumbsDown($movie->id, Auth::user()->id)}}</a>{{$movie->dislikes($movie->id)}}
+    @endguest
     <p class="blog-post-meta">
     <?php
       $numItems = count($movie->genres()->get());
@@ -26,6 +31,7 @@
     @endforeach
     </p>
     <p class="blog-post-meta">Duration: {{$movie->time_duration}}, release date: {{$movie->release_date}}</p>
+    <p class="blog-post-meta">Price: <b>{{$movie->price ? $movie->price->value.' $' : 'unavailable'}}</b></p>
     <img height="150" src="{{$movie->showMovieImage($movie->id)}}" alt="">
     <p>{{str_limit($movie->description, $limit = 250)}}</p>
     <hr>

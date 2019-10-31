@@ -29,11 +29,8 @@ class NewsController extends Controller
       $news = News::orderBy('created_at', 'desc')->paginate(5);
       $latest_news = News::orderBy('created_at', 'desc')->first();
       $latest_movie = Movie::orderBy('release_date', 'desc')->first();
-      //WE NEED TO FIND TOP RATED MOVIE...
-      $movie_user = DB::table('movie_user')->where('like', 1)->orderBy('like', 'desc')->first();
-      $top_movie = Movie::where('id', $movie_user->movie_id)->first();
 
-      return view('front.news.index', compact('news', 'latest_news', 'latest_movie', 'top_movie'));
+      return view('front.news.index', compact('news', 'latest_news', 'latest_movie'));
     }
 
     public function store(NewsCreateRequest $request)

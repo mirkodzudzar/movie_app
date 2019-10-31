@@ -4,7 +4,7 @@
       <!-- <a class="text-muted" href="#">Subscribe</a> -->
     </div>
     <div class="col-4 text-center">
-      <p class="text-muted" style="position:relative; top:8px; left:5px;">Logged in as: <b><i>{{ Auth::user()->username }}</i></b></p>
+      <p class="text-muted" style="position:relative; top:8px; left:5px;">@auth Logged in as: <b><i> {{ Auth::user()->username }} @endauth</i></b></p>
     </div>
     <div class="col-4 d-flex justify-content-end align-items-center">
       <a class="text-muted" href="#">

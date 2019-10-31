@@ -5,8 +5,13 @@
 @section('content')
   <div class="blog-post">
     <h2 class="blog-post-title">{{$movie->name}}</h2>
-    <i class="far fa-thumbs-up">{{$movie->likes($movie->id)}}</i>
-    <i class="far fa-thumbs-down">{{$movie->dislikes($movie->id)}}</i>
+    @guest
+      <i class="far fa-thumbs-up">{{$movie->likes($movie->id)}}</i>
+      <i class="far fa-thumbs-down">{{$movie->dislikes($movie->id)}}</i>
+    @else
+      <a href="{{ route('front.movies.like', $movie->id) }}">{{$movie->thumbsUp($movie->id, Auth::user()->id)}}</a>{{$movie->likes($movie->id)}}
+      <a href="{{ route('front.movies.dislike', $movie->id) }}">{{$movie->thumbsDown($movie->id, Auth::user()->id)}}</a>{{$movie->dislikes($movie->id)}}
+    @endguest
     <p class="blog-post-meta">
     <?php
       $numItems = count($movie->genres()->get());
@@ -21,6 +26,7 @@
     @endforeach
     </p>
     <p class="blog-post-meta">Duration: {{$movie->time_duration}}, release date: {{$movie->release_date}}</p>
+    <p class="blog-post-meta">Price: <b>{{$movie->price ? $movie->price->value.' $' : 'unavailable'}}</b></p>
     <img height="250" src="{{$movie->showMovieImage($movie->id)}}" alt="">
     <ol>
       @foreach($professions as $profession)

@@ -7,11 +7,14 @@ use App\Movie;
 use App\Genre;
 use App\Profession;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class MoviesController extends Controller
 {
   public function __construct()
   {
+    $this->middleware('auth', ['only' => ['like', 'dislike']]);
     $genres = Genre::all();
     View::share('genres', $genres);
   }
@@ -29,5 +32,51 @@ class MoviesController extends Controller
     $movie = Movie::findOrFail($id);
 
     return view('front.movies.show', compact('movie', 'professions'));
+  }
+
+  public function like($id)
+  {
+    $movie = Movie::findOrFail($id);
+    $user_id = Auth::user()->id;
+
+    $movie_user = DB::table('movie_user')->where('movie_id', $id)->where('user_id', $user_id)->first();
+    if($movie_user == null)
+    {
+      $movie->users()->attach($user_id, ['like' => 1]);
+    }
+    elseif($movie_user->like == 0)
+    {
+      $movie->users()->detach($user_id);
+      $movie->users()->attach($user_id, ['like' => 1]);
+    }
+    else
+    {
+      $movie->users()->detach($user_id);
+    }
+
+    return redirect()->back();
+  }
+
+  public function dislike($id)
+  {
+    $movie = Movie::findOrFail($id);
+    $user_id = Auth::user()->id;
+
+    $movie_user = DB::table('movie_user')->where('movie_id', $id)->where('user_id', $user_id)->first();
+    if($movie_user == null)
+    {
+      $movie->users()->attach($user_id, ['like' => 0]);
+    }
+    elseif($movie_user->like == 1)
+    {
+      $movie->users()->detach($user_id);
+      $movie->users()->attach($user_id, ['like' => 0]);
+    }
+    else
+    {
+      $movie->users()->detach($user_id);
+    }
+
+    return redirect()->back();
   }
 }
