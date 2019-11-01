@@ -21,7 +21,7 @@ class MoviesController extends Controller
 
   public function index()
   {
-    $movies = Movie::orderBy('created_at', 'desc')->paginate(5);
+    $movies = Movie::orderBy('release_date', 'desc')->paginate(5);
 
     return view('front.movies.index', compact('movies'));
   }

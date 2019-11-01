@@ -19,7 +19,7 @@
         <h3 class="mb-0">movie_name</h3>
         <div class="mb-1 text-muted">release_date</div>
         <p class="card-text mb-auto">content</p>
-        <a href="#" class="stretched-link">Continue reading</a>
+        <a href="#" class="stretched-link"></a>
       </div>
       <div class="col-auto d-none d-lg-block">
         <img height="180" src="{{$latest_movie->showMovieImage($latest_movie->id)}}" alt="">
@@ -33,7 +33,7 @@
         <h3 class="mb-0">{{$latest_movie->name}}</h3>
         <div class="mb-1 text-muted">{{$latest_movie->release_date}}</div>
         <p class="mb-auto">{{str_limit($latest_movie->description, $limit = 25)}}</p>
-        <a href="#" class="stretched-link">Continue reading</a>
+        <a href="{{ route('front.movies.show', $latest_movie->id) }}" class="stretched-link"></a>
       </div>
       <div class="col-auto d-none d-lg-block">
         <img height="180" src="{{$latest_movie->showMovieImage($latest_movie->id)}}" alt="">

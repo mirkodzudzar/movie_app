@@ -37,7 +37,7 @@
     <hr>
   </div><!-- /.blog-post -->
 @empty
-  <h2 class="blog-post-title">No genres found.</h2>
+  <h2 class="blog-post-title">No movies found.</h2>
 @endforelse
 {{ $movies->links() }}
 
