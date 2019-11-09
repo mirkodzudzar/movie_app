@@ -37,6 +37,10 @@
         <td>{{$celebrity->state_of_birth}}</td>
       </tr>
       <tr>
+        <th>Profession(s)</th>
+        <td>{{$celebrity->showProfessions($celebrity->id)}}</td>
+      </tr>
+      <tr>
         <th>Created at</th>
         <td>{{$celebrity->created_at}}</td>
       </tr>

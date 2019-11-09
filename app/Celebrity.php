@@ -33,7 +33,7 @@ class Celebrity extends Model
   }
   //FIX COMA PROBLEM AFTER DELETING SOME OF THE PROFESSIONS
   //Function for showing a professions for specific celebrity
-  public function professions($id)
+  public function showProfessions($id)
   {
       // $celebrity = DB::table('celebrities')->where('id', $id)->first();
       $celebrity_movies = DB::table('celebrity_movie')->where('celebrity_id', $id)->distinct()->get(['profession_id']);
@@ -50,7 +50,7 @@ class Celebrity extends Model
           }
           else
           {
-            echo $profession->name.", ";
+            echo $profession->name.', ';
           }
         }
       }

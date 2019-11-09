@@ -16,4 +16,9 @@ class Role extends Model
     {
       return DB::table('users')->where('role_id', $id)->count();
     }
+
+    public function users()
+    {
+      return $this->hasMany('App\User');
+    }
 }

@@ -60,7 +60,7 @@
       @forelse($roles as $role)
         <tr>
           <td>{{$role->id}}</td>
-          <td>{{$role->name}}</td>
+          <td><a href="{{ route('admin.roles.show', $role->id) }}">{{$role->name}}</a></td>
           <td>{{$role->userByRoleCount($role->id)}}</td>
           <td>{{date('Y-m-d', strtotime($role->created_at))}}</td>
           <td>{{date('Y-m-d', strtotime($role->updated_at))}}</td>

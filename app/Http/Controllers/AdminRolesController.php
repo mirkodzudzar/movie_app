@@ -45,6 +45,13 @@ class AdminRolesController extends Controller
       return redirect('admin/roles');
     }
 
+    public function show($id)
+    {
+      $role = Role::findOrFail($id);
+
+      return view('admin.roles.show', compact('role'));
+    }
+
     public function edit($id)
     {
       $role = Role::findOrFail($id);

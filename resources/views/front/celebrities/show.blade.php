@@ -5,7 +5,7 @@
 @section('content')
   <div class="blog-post">
     <h2 class="blog-post-title">{{$celebrity->full_name}}</h2>
-    <p class="blog-post-meta">{{$celebrity->professions($celebrity->id)}}</p>
+    <p class="blog-post-meta">{{$celebrity->showProfessions($celebrity->id)}}</p>
     <p class="blog-post-meta">Date of birth: {{$celebrity->date_of_birth}}</p>
     <p class="blog-post-meta">State of birth: {{$celebrity->state_of_birth}}</p>
     <img height="250" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt="">

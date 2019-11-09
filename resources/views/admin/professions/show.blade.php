@@ -62,12 +62,12 @@
         <th colspan="2">Edit/Delete actions</th>
       </thead>
       <tbody>
-        @forelse($celebrities as $celebrity)
+        @forelse($profession->celebrities as $celebrity)
           <tr>
             <td>{{$celebrity->id}}</td>
             <td><img height="50" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt=""></td>
             <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
-            <td>{{$celebrity->showProfessions($celebrity->id)}}</td>
+            <td>{{$celebrity->professions($celebrity->id)}}</td>
             <td>{{$celebrity->date_of_birth}}</td>
             <td>{{$celebrity->state_of_birth}}</td>
             <td>{{date('Y-m-d', strtotime($celebrity->created_at))}}</td>

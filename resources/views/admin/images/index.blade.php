@@ -23,7 +23,7 @@
             <tr>
               <td>{{$image->id}}</td>
               <td><img height="50" src="{{$image->file}}" alt=""></td>
-              <td>{{$celebrity->full_name}}</td>
+              <td><a href="{{ route('admin.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></td>
               <td>{{$image->created_at}}</td>
               <td>{{$image->updated_at}}</td>
               <td>
@@ -60,7 +60,7 @@
             <tr>
               <td>{{$image->id}}</td>
               <td><img height="50" src="{{$image->file}}" alt=""></td>
-              <td>{{$movie->name}}</td>
+              <td><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
               <td>{{$image->created_at}}</td>
               <td>{{$image->updated_at}}</td>
               <td>

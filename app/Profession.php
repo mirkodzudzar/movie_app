@@ -17,6 +17,11 @@ class Profession extends Model
       return $this->hasMany('App\CelebrityMovie');
     }
 
+    public function celebrities()
+    {
+      return $this->hasMany('App\Celebrity');
+    }
+
     //Number of specific profession in celebrity_movie table
     public function numberOfCelebrities($id)
     {

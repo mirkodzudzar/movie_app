@@ -82,6 +82,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@index']);
     Route::post('roles', ['as' => 'admin.roles.index' , 'uses' => 'AdminRolesController@store']);
     Route::get('roles/{role}/edit', ['as' => 'admin.roles.edit' , 'uses' => 'AdminRolesController@edit']);
+    Route::get('roles/{role}', ['as' => 'admin.roles.show' , 'uses' => 'AdminRolesController@show']);
     Route::patch('roles/{role}', 'AdminRolesController@update');
     Route::delete('roles/{role}', 'AdminRolesController@destroy');
     Route::post('/roles/search', 'AdminRolesController@index');
@@ -97,6 +98,7 @@ Route::group(['prefix' => 'admin'], function(){
     //Professions controller
     Route::get('professions', ['as' => 'admin.professions.index' , 'uses' => 'AdminProfessionsController@index']);
     Route::post('professions', ['as' => 'admin.professions.index' , 'uses' => 'AdminProfessionsController@store']);
+    Route::get('professions/{profession}', ['as' => 'admin.professions.show' , 'uses' => 'AdminProfessionsController@show']);
     Route::get('professions/{profession}/edit', ['as' => 'admin.professions.edit' , 'uses' => 'AdminProfessionsController@edit']);
     Route::patch('professions/{profession}', 'AdminProfessionsController@update');
     Route::delete('professions/{profession}', 'AdminProfessionsController@destroy');

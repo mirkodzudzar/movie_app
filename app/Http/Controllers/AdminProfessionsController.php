@@ -49,6 +49,14 @@ class AdminProfessionsController extends Controller
     return redirect('admin/professions');
   }
 
+  public function show($id)
+  {
+    // $celebrities = CelebrityMovie::where('profession_id', $id)->get('celebrity_id');
+    //
+    //
+    // return view('admin.professions.show', compact('profession'));
+  }
+
   public function edit($id)
   {
     $profession = Profession::findOrFail($id);

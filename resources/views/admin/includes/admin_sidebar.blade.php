@@ -15,7 +15,7 @@
       </div>
       <div class="info">
         <!-- Change this later -->
-        <a href="#" class="d-block">{{ Auth::user()->username }}</a>
+        <a href="{{ route('admin.users.edit', Auth::user()->id) }}" class="d-block">{{ Auth::user()->username }}</a>
       </div>
     </div>
 
