@@ -13,20 +13,40 @@ use Faker\Generator as Faker;
 // });
 
 $factory->define(App\User::class, function(Faker $faker) {
+    $firstName = $faker->firstName;
+    $lastName = $faker->lastName;
+    $username = $firstName."".$lastName;//unique()
+
     return [
-      'first_name' => $faker->firstName,
-      'last_name' => $faker->lastname,
+      'first_name' => $firstName,
+      'last_name' => $lastName,
       'date_of_birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
       'state_of_birth' => $faker->state,
-      'username' => $faker->unique()->firstName.$faker->lastName,
-      'email' => $faker->unique()->safeEmail,
+      'username' => $username,
+      'email' => strtolower($username)."@".$faker->safeEmailDomain,
       'email_verified_at' => now(),
-      'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+      'password' =>  bcrypt($faker->password(9)), // password
       'role_id' => $faker->numberBetween(1, 2),
       'photo_id' => null,
       'remember_token' => Str::random(10),
     ];
 });
+
+// $factory->define(App\User::class, 'first_name', function(Faker $faker) {
+//   return [
+//       'first_name' => 'Mirko',
+//       'last_name' => 'Dzudzar',
+//       'date_of_birth' => '1990-01-01',
+//       'state_of_birth' => 'Serbia',
+//       'username' => 'MirkoDzudzar',
+//       'email' => 'mirkodzudzar@gmail.com',
+//       'email_verified_at' => now(),
+//       'password' => '123456789', // password
+//       'role_id' => 1,
+//       'photo_id' => null,
+//       'remember_token' => Str::random(10),
+//     ];
+// });
 
 $factory->define(App\News::class, function(Faker $faker){
   return [

@@ -73,7 +73,7 @@
             <td>{{$user->email}}</td>
             <td>{{$user->date_of_birth}}</td>
             <td>{{$user->state_of_birth}}</td>
-            <td>{{$user->role['name']}}</td>
+            <td><a href="{{ route('admin.roles.show', $user->role['id']) }}">{{$user->role['name']}}</a></td>
             <td>{{date('Y-m-d', strtotime($user->created_at))}}</td>
             <td>{{date('Y-m-d', strtotime($user->updated_at))}}</td>
             <td><a href="{{ route('admin.users.edit', $user->id )}}" class="btn btn-success">Edit</a></td>

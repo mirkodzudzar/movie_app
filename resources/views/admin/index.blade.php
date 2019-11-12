@@ -158,3 +158,33 @@
   <div id="donutchart" style="width: 900px; height: 500px;"></div>
 </div>
 @endsection
+
+@section('scripts')
+<!-- Google charts -->
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Movies',        {{$movies_count}}],
+      ['Celebrities',   {{$celebrities_count}}],
+      ['Users',         {{$users_count}}],
+      ['Celebs images', {{$celebritie_image_count}}],
+      ['Movie images',  {{$movie_image_count}}],
+      ['News',          {{$news_count}}]
+    ]);
+
+    var options = {
+      // legend: 'none',
+      // pieSliceText: 'label',
+      title: 'Movie application informations',
+      pieHole: 0.4,
+      backgroundColor: 'transparent'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
+</script>
+@endsection
