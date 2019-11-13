@@ -4,17 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Genre;
 use App\Profession;
 use App\News;
-use View;
 
-class UsersController extends Controller
+class UsersController extends BaseController
 {
   public function __construct()
   {
-    $genres = Genre::all();
-    View::share('genres', $genres);
+    parent::__construct();
   }
 
   public function show($id)

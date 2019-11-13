@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 use App\Genre;
 use App\Movie;
 use App\Profession;
-use Illuminate\Support\Facades\View;
 
-class GenresController extends Controller
+class GenresController extends BaseController
 {
   public function __construct()
   {
-    $genres = Genre::all();
-    View::share('genres', $genres);
+    parent::__construct();
   }
 
   public function show($id)

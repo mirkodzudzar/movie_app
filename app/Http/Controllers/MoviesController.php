@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
-use App\Genre;
 use App\Profession;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class MoviesController extends Controller
+class MoviesController extends BaseController
 {
   public function __construct()
   {
+    parent::__construct();
     $this->middleware('auth', ['only' => ['like', 'dislike']]);
-    $genres = Genre::all();
-    View::share('genres', $genres);
   }
 
   public function index()

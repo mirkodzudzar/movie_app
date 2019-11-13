@@ -5,23 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\News;
 use App\Movie;
-use App\Genre;
 use App\Profession;
 use App\Photo;
 use DB;
-use View;
 use App\Http\Requests\NewsCreateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class NewsController extends Controller
+class NewsController extends BaseController
 {
     public function __construct()
     {
+      parent::__construct();
       $this->middleware('auth', ['only' => 'store']);
       $this->middleware('author', ['only' => 'store']);
-      $genres = Genre::all();
-      View::share('genres', $genres);
     }
 
     public function index()

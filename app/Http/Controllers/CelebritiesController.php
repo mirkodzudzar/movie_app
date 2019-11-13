@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Genre;
 use App\Profession;
 use App\Celebrity;
-use Illuminate\Support\Facades\View;
 
-class CelebritiesController extends Controller
+class CelebritiesController extends BaseController
 {
     public function __construct()
     {
-      $genres = Genre::all();
-      View::share('genres', $genres);
+      parent::__construct();
     }
+
     public function index()
     {
       $celebrities = Celebrity::orderBy('created_at', 'desc')->paginate(5);
