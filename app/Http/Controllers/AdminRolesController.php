@@ -9,12 +9,11 @@ use App\Http\Requests\RoleEditRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
-class AdminRolesController extends Controller
+class AdminRolesController extends AdminBaseController
 {
     public function __construct()
     {
-      $this->middleware('auth');
-      $this->middleware('administrator');
+      parent::__construct();
     }
 
     public function index()

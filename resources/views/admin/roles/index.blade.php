@@ -15,7 +15,7 @@
   {{ Form::close() }}
 @endsection
 
-@section('heading', 'Roles')
+@section('heading', "Roles ({$roles_count})")
 
 @section('description', 'Roles')
 

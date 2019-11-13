@@ -15,7 +15,7 @@
   {{ Form::close() }}
 @endsection
 
-@section('heading', 'Users')
+@section('heading', "Users ({$users_count})")
 
 @section('description', 'Users')
 

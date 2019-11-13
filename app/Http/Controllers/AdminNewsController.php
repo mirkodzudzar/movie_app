@@ -6,12 +6,11 @@ use Illuminate\Http\Request;
 use App\News;
 use Illuminate\Support\Facades\Session;
 
-class AdminNewsController extends Controller
+class AdminNewsController extends AdminBaseController
 {
     public function __construct()
     {
-      $this->middleware('auth');
-      $this->middleware('administrator');
+      parent::__construct();
     }
 
     public function index()

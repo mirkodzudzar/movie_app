@@ -12,12 +12,11 @@ use App\Http\Requests\MovieEditRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
-class AdminMoviesController extends Controller
+class AdminMoviesController extends AdminBaseController
 {
     public function __construct()
     {
-      $this->middleware('auth');
-      $this->middleware('administrator');
+      parent::__construct();
     }
 
     /**

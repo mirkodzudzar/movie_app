@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\input;
 use DB;
 
-class AdminProfessionsController extends Controller
+class AdminProfessionsController extends AdminBaseController
 {
   public function __construct()
   {
-    $this->middleware('auth');
-    $this->middleware('administrator');
+    parent::__construct();
   }
 
   public function index()

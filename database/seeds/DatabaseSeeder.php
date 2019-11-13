@@ -31,10 +31,14 @@ class DatabaseSeeder extends Seeder
         });
         factory(App\Role::class, 3)->create();
         // factory(App\Photo::class, 1)->create();
-        factory(App\Movie::class, 10)->create();
+        // factory(App\Movie::class, 10)->create();
+        factory(App\Movie::class, 10)->create()->each(function($movie) {
+          $movie->price()->save(factory(App\Price::class)->make());
+        });
+
         factory(App\Genre::class, 3)->create();
         factory(App\Celebrity::class, 10)->create();
-        factory(App\Price::class, 10)->create();
+        // factory(App\Price::class, 10)->create();
         factory(App\Profession::class, 4)->create();
 
         $genres = App\Genre::all();

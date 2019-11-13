@@ -15,7 +15,7 @@
   {{ Form::close() }}
 @endsection
 
-@section('heading', 'Professions')
+@section('heading', "Professions ({$professions_count})")
 
 @section('description', 'Professions')
 

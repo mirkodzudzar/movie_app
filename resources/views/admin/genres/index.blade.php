@@ -15,7 +15,7 @@
   {{ Form::close() }}
 @endsection
 
-@section('heading', 'Genres')
+@section('heading', "Genres ({$genres_count})")
 
 @section('description', 'Genres')
 

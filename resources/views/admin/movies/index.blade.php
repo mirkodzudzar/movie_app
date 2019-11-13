@@ -15,7 +15,7 @@
   {{ Form::close() }}
 @endsection
 
-@section('heading', 'Movies')
+@section('heading', "Movies ({$movies_count})")
 
 @section('description', 'Movies')
 

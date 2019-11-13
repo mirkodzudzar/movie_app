@@ -10,12 +10,11 @@ use App\Image;
 use Illuminate\Support\Facades\Session;
 use DB;
 
-class AdminImagesController extends Controller
+class AdminImagesController extends AdminBaseController
 {
     public function __construct()
     {
-      $this->middleware('auth');
-      $this->middleware('administrator');
+      parent::__construct();
     }
 
     public function index()

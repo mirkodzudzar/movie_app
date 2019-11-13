@@ -36,7 +36,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-film"></i>
             <p>
-              Movies
+              Movies ({{$movies_count}})
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -44,7 +44,7 @@
             <li class="nav-item">
               <a href="{{ route('admin.movies.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>See all movies</p>
+                <p>See all movies ({{$movies_count}})</p>
               </a>
             </li>
             <li class="nav-item">
@@ -56,13 +56,13 @@
             <li class="nav-item">
               <a href="{{ route('admin.genres.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Genres</p>
+                <p>Genres ({{$genres_count}})</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('admin.prices.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Prices</p>
+                <p>Prices ({{$prices_count}})</p>
               </a>
             </li>
           </ul>
@@ -71,7 +71,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user-tie"></i>
             <p>
-              Celebrities
+              Celebrities ({{$celebrities_count}})
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -79,7 +79,7 @@
             <li class="nav-item">
               <a href="{{ route('admin.celebrities.index' )}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>See all celebrities</p>
+                <p>See all celebrities ({{$celebrities_count}})</p>
               </a>
             </li>
             <li class="nav-item">
@@ -91,7 +91,7 @@
             <li class="nav-item">
               <a href="{{ route('admin.professions.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Professions</p>
+                <p>Professions ({{$professions_count}})</p>
               </a>
             </li>
           </ul>
@@ -100,7 +100,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
-              Users
+              Users ({{$users_count}})
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -108,7 +108,7 @@
             <li class="nav-item">
               <a href="{{ route('admin.users.index' )}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>See all users</p>
+                <p>See all users ({{$users_count}})</p>
               </a>
             </li>
             <li class="nav-item">
@@ -120,7 +120,7 @@
             <li class="nav-item">
               <a href="{{ route('admin.roles.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Roles</p>
+                <p>Roles ({{$roles_count}})</p>
               </a>
             </li>
           </ul>
@@ -129,7 +129,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-image"></i>
             <p>
-              Images
+              Images ({{$all_image_count}})
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -137,13 +137,13 @@
             <li class="nav-item">
               <a href="{{ route('admin.images.index') }}#celebrities" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Images for celebrities</p>
+                <p>Images for celebs ({{$celebritie_image_count}})</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('admin.images.index') }}#movies" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Images for movies</p>
+                <p>Images for movies ({{$movie_image_count}})</p>
               </a>
             </li>
             <li class="nav-item">
@@ -158,7 +158,7 @@
           <a href="{{ route('admin.news.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
-              News by authors
+              News by authors ({{$news_count}})
             </p>
           </a>
         </li>

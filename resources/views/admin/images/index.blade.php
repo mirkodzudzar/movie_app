@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="card-body table-responsive p-0">
-  {{ Form::label('celebrity_image', 'Images of celebrities', ['id' => 'celebrities']) }}
+  {{ Form::label('celebrity_image', "Images for celebrities ({$celebritie_image_count})", ['id' => 'celebrities']) }}
   <table class="table table-hover text-center">
     <thead class="bg-success">
         <th >Id</th>
@@ -45,7 +45,7 @@
   </div>
 
   <div class="card-body table-responsive p-0">
-    {{ Form::label('movie_image', 'Images of movies', ['id' => 'movies']) }}
+    {{ Form::label('movie_image', "Images for movies ({$movie_image_count})", ['id' => 'movies']) }}
     <table class="table table-hover text-center">
       <thead class="bg-success">
         <th>Id</th>

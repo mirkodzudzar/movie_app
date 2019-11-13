@@ -2,7 +2,7 @@
 
 @section('title', 'Movie Application - News')
 
-@section('heading', 'News')
+@section('heading', "News ({$news_count})")
 
 @section('description', 'News')
 

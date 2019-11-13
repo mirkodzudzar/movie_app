@@ -15,7 +15,7 @@
   {{ Form::close() }}
 @endsection
 
-@section('heading', 'Prices of movies')
+@section('heading', "Prices of movies ({$prices_count})")
 
 @section('description', 'Prices of movies')
 
@@ -61,9 +61,6 @@
       <th>Name</th>
       <th>Time duration</th>
       <th>Release date</th>
-      @foreach($professions as $profession)
-        <th>{{$profession->name}}(s)</th>
-      @endforeach
       <th>Genre</th>
       <th>Price</th>
     </thead>
@@ -75,9 +72,6 @@
           <td><a href="{{ route('admin.movies.show', $movie->id) }}">{{$movie->name}}</a></td>
           <td>{{$movie->time_duration}}</td>
           <td>{{$movie->release_date}}</td>
-          @foreach($professions as $profession)
-            <td>{{$movie->professions($movie->id, $profession->id)}}</td>
-          @endforeach
           <td>
             <?php
               $counter = 1;

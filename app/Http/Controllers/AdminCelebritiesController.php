@@ -9,12 +9,11 @@ use App\Http\Requests\CelebrityEditRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
-class AdminCelebritiesController extends Controller
+class AdminCelebritiesController extends AdminBaseController
 {
     public function __construct()
     {
-      $this->middleware('auth');
-      $this->middleware('administrator');
+      parent::__construct();
     }
 
     /**
