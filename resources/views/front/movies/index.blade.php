@@ -8,7 +8,7 @@
 </h3>
 
 @forelse($movies as $movie)
-  <div class="blog-post">
+  <div class="blog-post border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white p-3">
     <h2 class="blog-post-title"><a href="{{ route('front.movies.show', $movie->id) }}">{{$movie->name}}</a></h2>
     @guest
       <i class="far fa-thumbs-up">{{$movie->likes($movie->id)}}</i>
@@ -34,7 +34,6 @@
     <p class="blog-post-meta">Price: <b>{{$movie->price ? $movie->price->value.' $' : 'unavailable'}}</b></p>
     <img height="150" src="{{$movie->showMovieImage($movie->id)}}" alt="">
     <p>{{str_limit($movie->description, $limit = 250)}}</p>
-    <hr>
   </div><!-- /.blog-post -->
 @empty
   <h2 class="blog-post-title">No movies found.</h2>

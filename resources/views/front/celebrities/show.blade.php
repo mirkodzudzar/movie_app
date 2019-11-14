@@ -3,7 +3,7 @@
 @section('title', 'Movie Application - '.$celebrity->full_name)
 
 @section('content')
-  <div class="blog-post">
+  <div class="blog-post border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white p-3">
     <h2 class="blog-post-title">{{$celebrity->full_name}}</h2>
     <p class="blog-post-meta">{{$celebrity->showProfessions($celebrity->id)}}</p>
     <p class="blog-post-meta">Date of birth: {{$celebrity->date_of_birth}}</p>

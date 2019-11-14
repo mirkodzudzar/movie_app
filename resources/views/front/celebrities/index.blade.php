@@ -8,11 +8,10 @@
 </h3>
 
 @forelse($celebrities as $celebrity)
-  <div class="blog-post">
+  <div class="blog-post border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white p-3">
     <h2 class="blog-post-title"><a href="{{ route('front.celebrities.show', $celebrity->id) }}">{{$celebrity->full_name}}</a></h2>
     <p class="blog-post-meta">{{$celebrity->showProfessions($celebrity->id)}}</p>
     <img height="150" src="{{$celebrity->showCelebrityImage($celebrity->id)}}" alt="">
-    <hr>
   </div><!-- /.blog-post -->
 @empty
   <h2 class="blog-post-title">No celebrities found.</h2>

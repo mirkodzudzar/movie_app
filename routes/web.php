@@ -33,6 +33,7 @@ Route::get('movies', ['as' => 'front.movies.index' , 'uses' => 'MoviesController
 Route::get('movies/{movie}', ['as' => 'front.movies.show' , 'uses' => 'MoviesController@show']);
 Route::get('movies/{movie}/like', ['as' => 'front.movies.like' , 'uses' => 'MoviesController@like']);
 Route::get('movies/{movie}/dislike', ['as' => 'front.movies.dislike' , 'uses' => 'MoviesController@dislike']);
+Route::get('movies/ratings/{user}', ['as' => 'front.movies.ratings' , 'uses' => 'MoviesController@ratings']);
 
 //Genres controller
 Route::get('genres/{genre}', ['as' => 'front.genres.show' , 'uses' => 'GenresController@show']);

@@ -3,7 +3,7 @@
 @section('title', 'Movie Application - '.$movie->name)
 
 @section('content')
-  <div class="blog-post">
+  <div class="blog-post border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white p-3">
     <h2 class="blog-post-title">{{$movie->name}}</h2>
     @guest
       <i class="far fa-thumbs-up">{{$movie->likes($movie->id)}}</i>

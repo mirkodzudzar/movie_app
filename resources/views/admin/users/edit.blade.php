@@ -37,9 +37,9 @@
       {{ Form::label('role_id', 'Role') }}
       {{ Form::select('role_id', $roles, null, ['class' => 'form-control']) }}
     </div>
-    <img height="150" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt="">
     <div class="form-group">
       {{ Form::label('photo_id', 'Photo:') }}
+      <img height="150" src="{{$user->photo ? $user->photo->file : App\Photo::noPhoto()}}" alt="">
       {{ Form::file('photo_id', null) }}
     </div>
     <div class="form-group">

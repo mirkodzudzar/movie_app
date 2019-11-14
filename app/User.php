@@ -55,6 +55,19 @@ class User extends Authenticatable
       return false;
     }
 
+    public function isNotAdmin()
+    {
+      if($this->role !== null)
+      {
+        if($this->role->name != "administrator")
+        {
+            return true;
+        }
+      }
+
+      return false;
+    }
+
     public function isAuthor()
     {
       if($this->role !== null)

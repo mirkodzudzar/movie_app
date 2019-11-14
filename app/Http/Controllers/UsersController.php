@@ -6,18 +6,24 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Profession;
 use App\News;
+use App\Photo;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserEditRequest;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends BaseController
 {
   public function __construct()
   {
     parent::__construct();
+    $this->middleware('notAdministrator', ['only' => ['edit', 'store']]);
   }
 
   public function show($id)
   {
       $user = User::findOrFail($id);
-      $news = News::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);;
+      $news = News::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);
 
       return view('front.users.show', compact('user', 'news'));
   }
@@ -69,8 +75,9 @@ class UsersController extends BaseController
       }
 
       $user->update($input);
-      Session::flash('updated_user', 'A user '.$request->first_name.' '.$request->last_name.' has been updated.');
 
-      return redirect('/users');
+      Session::flash('updated_user', 'Your profile has been updated.');
+
+      return redirect()->back();
   }
 }

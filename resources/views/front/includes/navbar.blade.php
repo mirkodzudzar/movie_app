@@ -20,9 +20,10 @@
           @if(Auth::user()->role_id)
             @if(Auth::user()->isAdmin())
               <a href="{{ route('admin.index') }}" class="btn btn-sm btn-outline-secondary">Admin</a>
+            @else
+              <a class="btn btn-sm btn-outline-secondary" href="{{ route('front.users.edit', Auth::user()->id) }}">Profile</a>
             @endif
           @endif
-              <a class="btn btn-sm btn-outline-secondary" href="{{ route('front.users.edit', Auth::user()->id) }}">Profile</a>
               <a class="btn btn-sm btn-outline-secondary" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
@@ -40,15 +41,16 @@
   <hr>
   <nav class="nav d-flex justify-content-between">
     <a class="p-1 text-muted" href="{{ route('front.news.index') }}">News</a>
+    <a class="p-1 text-muted" href="{{ route('front.celebrities.index') }}">Celebrities</a>
+    <a class="p-1 text-muted" href="{{ route('front.movies.index') }}">Movies</a>
     @auth
       @if(Auth::user()->role_id)
         @if(Auth::user()->isAuthor())
           <a class="p-2 text-muted" href="{{ route('front.news.index') }}#create_news">Create some news</a>
         @endif
+          <a class="p-2 text-muted" href="{{ route('front.movies.ratings', Auth::user()->id) }}">Your ratings</a>
       @endif
     @endauth
-    <a class="p-1 text-muted" href="{{ route('front.movies.index') }}">Movies</a>
-    <a class="p-1 text-muted" href="{{ route('front.celebrities.index') }}">Celebrities</a>
     <!-- <a class="p-2 text-muted" href="#">Culture</a>
     <a class="p-2 text-muted" href="#">Business</a>
     <a class="p-2 text-muted" href="#">Politics</a>

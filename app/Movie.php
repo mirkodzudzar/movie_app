@@ -123,7 +123,7 @@ class Movie extends Model
         echo '<i class="fas fa-thumbs-up"></i>';
       }
     }
-    //A different look for dislike-thumb 
+    //A different look for dislike-thumb
     public function thumbsDown($movie_id, $user_id)
     {
       $movie_user = DB::table('movie_user')->where('movie_id', $movie_id)->where('user_id', $user_id)->where('like', 0)->first();
@@ -134,6 +134,22 @@ class Movie extends Model
       else
       {
         echo '<i class="fas fa-thumbs-down"></i>';
+      }
+    }
+
+    public static function ratings($user_id)
+    {
+      $movie_users = DB::table('movie_user')->where('user_id', $user_id)->get();
+      if($movie_users != null)
+      {
+        foreach($movie_users as $movie_user)
+        {
+          $movie[] = Movie::where('id', $movie_user->movie_id)->first();
+        }
+        if(!empty($movie))
+        {
+          return collect($movie);
+        }
       }
     }
 }

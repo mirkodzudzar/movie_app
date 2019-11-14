@@ -13,7 +13,7 @@ class MoviesController extends BaseController
   public function __construct()
   {
     parent::__construct();
-    $this->middleware('auth', ['only' => ['like', 'dislike']]);
+    $this->middleware('auth', ['only' => ['like', 'dislike', 'ratings']]);
   }
 
   public function index()
@@ -75,5 +75,20 @@ class MoviesController extends BaseController
     }
 
     return redirect()->back();
+  }
+
+  //We need to improve this code because if ratigns() returns a null then in a blade we need to check for that. So we need to check for null value before it goes to blade
+  public function ratings($user_id)
+  {
+    $movies = Movie::ratings($user_id);
+
+    if(Auth::user()->id == $user_id)
+    {
+      return view('front.movies.ratings', compact('movies'));
+    }
+    else
+    {
+      return redirect()->back();
+    }
   }
 }

@@ -22,7 +22,7 @@
         <a href="#" class="stretched-link"></a>
       </div>
       <div class="col-auto d-none d-lg-block">
-        <img height="180" src="{{$latest_movie->showMovieImage($latest_movie->id)}}" alt="">
+        <img height="180" src="" alt="">
       </div>
     </div>
   </div>
@@ -49,13 +49,12 @@
 </h3>
 
 @forelse($news as $n)
-  <div class="blog-post">
+  <div class="blog-post border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white p-3">
     <h2 class="blog-post-title"><a href="{{ route('front.news.show', $n->id) }}">{{$n->title}}</a></h2>
     <p class="blog-post-meta">{{$n->created_at->diffForHumans()}} by <a href="{{ route('front.users.show', $n->user_id) }}">{{$n->user->full_name}}</a></p>
     <img height="150" src="{{$n->showNewsPhoto($n->id)}}" alt="">
     <p>{{str_limit($n->content, $limit = 250)}}</p>
     <a href="{{ route('front.news.show', $n->id) }}">Continue reading</a>
-    <hr>
   </div><!-- /.blog-post -->
 @empty
   <h2 class="blog-post-title">No news found.</h2>
